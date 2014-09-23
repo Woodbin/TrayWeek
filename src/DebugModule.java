@@ -10,6 +10,7 @@ public class DebugModule {
 
     private DebugModule() {
         consoleWindowExists=false;
+        debugOut("DebugModule active");
     }
 
     public static void debugOut(String message){
@@ -34,7 +35,7 @@ public class DebugModule {
     }
 
     private static void processIn(String command){
-
+        //TODO command parsing and execution through core
     }
 
 

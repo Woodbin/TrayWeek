@@ -3,6 +3,8 @@
  */
 public class Core {
     private static Core coreObject = new Core();
+    private static DebugModule debugmodule = DebugModule.getInstance();
+
 
 
 
@@ -19,7 +21,7 @@ public class Core {
 
 
     private static void closeCore(int errorcode){
-        System.out.print("Closing core with errorcode: "+errorcode+" ~ "+getError(errorcode));
+        debugmodule.debugOut("Closing core with errorcode: "+errorcode+" ~ "+getError(errorcode));
         System.exit(errorcode);
 
 

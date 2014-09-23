@@ -21,8 +21,10 @@ public class App {
     private static Image settingsImage;
     private static Image closeImage;
 
+
     private static JPopupMenu menu;
 
+    private static DebugModule debugmodule = DebugModule.getInstance();
     private static Core core = Core.getInstance();
 
 
@@ -56,7 +58,7 @@ public class App {
         });
 
         if(!SystemTray.isSupported()){
-            System.out.println("SystemTray is not supported!");
+            debugmodule.debugOut("SystemTray is not supported!");
 
         }
         SystemTray tray = SystemTray.getSystemTray();
@@ -64,7 +66,7 @@ public class App {
         try{
             tray.add(icon);
         }catch (AWTException e){
-            System.out.println("TrayIcon could not be added");
+            debugmodule.debugOut("TrayIcon could not be added");
         }
 
     }
@@ -79,7 +81,7 @@ public class App {
             closeImage = ImageIO.read(new File("res/door_in.png"));
 
         } catch (IOException e) {
-            System.out.println("Error loading icon image!");
+            debugmodule.debugOut("Error loading icon image!");
             e.printStackTrace();
         }
     }
@@ -89,7 +91,7 @@ public class App {
         ActionListener popupMenuListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Popup menu item ["+ e.getActionCommand()+"] was pressed.");
+                debugmodule.debugOut("Popup menu item ["+ e.getActionCommand()+"] was pressed.");
                 if(e.getActionCommand()=="Close"){
                     String args[]=new String[1];
                     args[0] = "1";
@@ -149,15 +151,15 @@ public class App {
 
     private static class PopupPrintListener implements PopupMenuListener {
         public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-            System.out.println("Popup menu will be visible!");
+            debugmodule.debugOut("Popup menu will be visible!");
         }
 
         public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-            System.out.println("Popup menu will be invisible!");
+            debugmodule.debugOut("Popup menu will be invisible!");
         }
 
         public void popupMenuCanceled(PopupMenuEvent e) {
-            System.out.println("Popup menu is hidden!");
+            debugmodule.debugOut("Popup menu is hidden!");
         }
     }
 }
