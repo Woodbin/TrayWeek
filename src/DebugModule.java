@@ -39,7 +39,12 @@ public class DebugModule {
     }
 
 
-
+    public static String getErrorMessage(int errorcode){
+        switch (errorcode){
+            case 1: return "Everything went better than expected";
+            default: return "Unknown errorcode: "+errorcode;
+        }
+    }
 
 
 }

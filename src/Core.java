@@ -21,18 +21,13 @@ public class Core {
 
 
     private static void closeCore(int errorcode){
-        debugmodule.debugOut("Closing core with errorcode: "+errorcode+" ~ "+getError(errorcode));
+        debugmodule.debugOut("Closing core with errorcode: " + errorcode + " ~ " + debugmodule.getErrorMessage(errorcode));
         System.exit(errorcode);
 
 
     }
 
-    private static String getError(int errorcode){
-        switch (errorcode){
-            case 1: return "Alles in Ordnung";
-            default: return "Unknown errorcode: "+errorcode;
-        }
-    }
+
 
 
 
