@@ -25,6 +25,7 @@ public class Core {
     }
 
 
+
     /** Close Core action
      * Closes the app with corresponding errorcode
      *

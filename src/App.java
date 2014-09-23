@@ -21,6 +21,7 @@ public class App {
     private static Image loginImage;
     private static Image tasksImage;
     private static Image settingsImage;
+    private static Image consoleImage;
     private static Image closeImage;
 
 
@@ -85,6 +86,7 @@ public class App {
             tasksImage = ImageIO.read(new File("res/note.png"));
             settingsImage = ImageIO.read(new File("res/computer.png"));
             closeImage = ImageIO.read(new File("res/door_in.png"));
+            consoleImage = ImageIO.read(new File("res/console.png"));
 
         } catch (IOException e) {
             debugmodule.debugOut("Error loading icon image!");
@@ -106,6 +108,9 @@ public class App {
                     args[0] = "1";
                     core.action(CoreAction.CLOSE,args);
                 }
+                if(e.getActionCommand()=="Console"){
+                    showDebugWindow();
+                }
             }
         };
         JMenuItem item;
@@ -118,6 +123,9 @@ public class App {
         item.setHorizontalTextPosition(JMenuItem.RIGHT);
         item.addActionListener(popupMenuListener);
         menu.addSeparator();
+        menu.add(item = new JMenuItem("Console",new ImageIcon(consoleImage)));
+        item.setHorizontalTextPosition(JMenuItem.RIGHT);
+        item.addActionListener(popupMenuListener);
         menu.add(item = new JMenuItem("Settings",new ImageIcon(settingsImage)));
         item.setHorizontalTextPosition(JMenuItem.RIGHT);
         item.addActionListener(popupMenuListener);
@@ -137,6 +145,10 @@ public class App {
 
     private JPopupMenu getPopupMenu(){
         return menu;
+    }
+
+    private static void showDebugWindow(){
+
     }
 
     /**
