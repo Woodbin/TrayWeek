@@ -21,11 +21,13 @@ public class DebugModule {
      processIn(command);
     }
 
-    public static void consoleWindowState(boolean state){
+    public static void setConsoleWindowState(boolean state){
         consoleWindowExists = state;
     }
 
-
+    public static boolean getConsoleWindowState(){
+        return consoleWindowExists;
+    }
 
     private static void processOut(String message){
         if(consoleWindowExists){

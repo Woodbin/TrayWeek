@@ -30,6 +30,7 @@ public class App {
     //REFERENCES
     private static DebugModule debugmodule = DebugModule.getInstance();
     private static Core core = Core.getInstance();
+    private static DebugConsole debugConsole = new DebugConsole();
 
 
 
@@ -148,7 +149,11 @@ public class App {
     }
 
     private static void showDebugWindow(){
-
+        if(!debugmodule.getConsoleWindowState()){
+            debugConsole.create();
+            debugmodule.setConsoleWindowState(true);
+        }
+        debugConsole.windowShow();
     }
 
     /**
