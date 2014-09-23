@@ -15,6 +15,8 @@ import java.io.IOException;
 public class App {
     private static App app = new App();
     private static TrayIcon icon;
+
+    //IMAGES
     private static Image iconImage;
     private static Image loginImage;
     private static Image tasksImage;
@@ -24,6 +26,7 @@ public class App {
 
     private static JPopupMenu menu;
 
+    //REFERENCES
     private static DebugModule debugmodule = DebugModule.getInstance();
     private static Core core = Core.getInstance();
 
@@ -71,6 +74,9 @@ public class App {
 
     }
 
+    /**
+     * Loading resources
+     */
     private static void loadResources(){
         try {
 
@@ -86,6 +92,9 @@ public class App {
         }
     }
 
+    /**
+     * Builds tray icon JPopupMenu
+     */
     private static void buildTrayIconMenu(){
         menu = new JPopupMenu();
         ActionListener popupMenuListener = new ActionListener() {
@@ -130,7 +139,9 @@ public class App {
         return menu;
     }
 
-
+    /**
+     * Custom Mouse Popup Listener
+     */
     private static class MousePopupListener extends MouseAdapter {
         public void mousePressed(MouseEvent e){
                 checkPopup(e);
@@ -149,6 +160,9 @@ public class App {
         }
     }
 
+    /**
+     * Listener for calling debug messages for JPopupMenu
+     */
     private static class PopupPrintListener implements PopupMenuListener {
         public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
             debugmodule.debugOut("Popup menu will be visible!");
