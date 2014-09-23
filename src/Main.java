@@ -4,7 +4,7 @@
 public class Main {
     private static Main mainClass = new Main();
     private static Core coreObject;
-    private static Application app;
+    private static App app;
 
     /**
      * Singleton
@@ -19,7 +19,8 @@ public class Main {
      */
     private Main() {
         coreObject = Core.getInstance();
-        app = Application.getInstance();
+        app = App.getInstance();
+
 
     }
 
@@ -28,6 +29,9 @@ public class Main {
      * @param args parameters
      */
     public static void main(String args[]){
+        app = App.getInstance();
+        app.init(args);
+
 
     }
 
