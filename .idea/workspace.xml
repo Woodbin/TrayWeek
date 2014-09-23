@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8624c596-3173-482f-8e87-0e76873d5ed0" name="Default" comment="Tray Icon work, got leftclick on trayicon working">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core.java" afterPath="$PROJECT_DIR$/src/Core.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DebugModule.java" afterPath="$PROJECT_DIR$/src/DebugModule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CoreAction.java" afterPath="$PROJECT_DIR$/src/CoreAction.java" />
     </list>
     <ignored path="TrayWeek.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DebugModule.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DebugModule.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DebugModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65700483" vertical-offset="255" max-vertical-offset="918">
-              <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="918">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="e#422#423#0" expanded="true" />
                 <element signature="e#457#458#0" expanded="true" />
@@ -141,11 +140,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoreAction.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CoreAction.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/CoreAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
-              <caret line="3" column="55" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.082125604" vertical-offset="0" max-vertical-offset="621">
+              <caret line="3" column="80" selection-start-line="3" selection-start-column="80" selection-end-line="3" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -168,9 +167,9 @@
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/CoreActions.java" />
         <option value="$PROJECT_DIR$/src/App.java" />
-        <option value="$PROJECT_DIR$/src/CoreAction.java" />
         <option value="$PROJECT_DIR$/src/Core.java" />
         <option value="$PROJECT_DIR$/src/DebugModule.java" />
+        <option value="$PROJECT_DIR$/src/CoreAction.java" />
       </list>
     </option>
   </component>
@@ -370,7 +369,7 @@
       <changelist id="8624c596-3173-482f-8e87-0e76873d5ed0" name="Default" comment="" />
       <created>1411498833606</created>
       <updated>1411498833606</updated>
-      <workItem from="1411498844740" duration="10844000" />
+      <workItem from="1411498844740" duration="10946000" />
     </task>
     <task id="LOCAL-00001" summary="Tray Icon work, basic Core Action processing">
       <created>1411507322104</created>
@@ -384,7 +383,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10844000" />
+    <option name="totallyTimeSpent" value="10946000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -530,14 +529,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CoreAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
-          <caret line="3" column="55" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Core.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.88" vertical-offset="67" max-vertical-offset="663">
@@ -548,8 +539,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DebugModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65700483" vertical-offset="255" max-vertical-offset="918">
-          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="918">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="e#422#423#0" expanded="true" />
             <element signature="e#457#458#0" expanded="true" />
@@ -558,6 +549,14 @@
             <element signature="e#596#597#0" expanded="true" />
             <element signature="e#639#640#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CoreAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.082125604" vertical-offset="0" max-vertical-offset="621">
+          <caret line="3" column="80" selection-start-line="3" selection-start-column="80" selection-end-line="3" selection-end-column="80" />
+          <folding />
         </state>
       </provider>
     </entry>
