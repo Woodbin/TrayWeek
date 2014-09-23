@@ -156,6 +156,10 @@ public class App {
         debugConsole.windowShow();
     }
 
+    public static void forwardToConsoleWindow(String message){
+        debugConsole.consolePrint(message);
+    }
+
     /**
      * Custom Mouse Popup Listener
      */

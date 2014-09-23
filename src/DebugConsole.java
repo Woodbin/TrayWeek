@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -18,10 +20,20 @@ public class DebugConsole {
     private static DebugModule debugmodule = DebugModule.getInstance();
 
 
+    public DebugConsole() {
+        executeButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                debugmodule.debugOut("Execute button pressed");
+                super.mouseReleased(e);
+            }
+        });
+    }
 
     public void consolePrint(String message){
         consoleTextArea.append(message+"\n");
-
+       // consoleTextArea.setText(consoleTextArea.getText()+message+"\n");
+        consoleTextArea.repaint();
     }
 
 
