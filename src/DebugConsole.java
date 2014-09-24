@@ -47,7 +47,6 @@ public class DebugConsole{
     }
 
     public void consolePrint(String message){
-        //TODO fix console window textarea update
         consoleTextArea.append(message+"\n");
         consoleTextArea.setCaretPosition(consoleTextArea.getDocument().getLength());
         consoleTextArea.revalidate();

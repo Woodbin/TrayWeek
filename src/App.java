@@ -104,12 +104,12 @@ public class App {
             @Override
             public void actionPerformed(ActionEvent e) {
                 debugmodule.debugOut("Popup menu item ["+ e.getActionCommand()+"] was pressed.");
-                if(e.getActionCommand()=="Close"){
+                if(e.getActionCommand()=="Odchod domů"){
                     String args[]=new String[1];
                     args[0] = "1";
                     core.action(CoreAction.CLOSE,args);
                 }
-                if(e.getActionCommand()=="Console"){
+                if(e.getActionCommand()=="Konzole"){
                     showDebugWindow();
                 }
             }
@@ -120,18 +120,22 @@ public class App {
         menu.add(item = new JMenuItem("Login", new ImageIcon(loginImage)));
         item.setHorizontalTextPosition(JMenuItem.RIGHT);
         item.addActionListener(popupMenuListener);
-        menu.add(item = new JMenuItem("Tasks",new ImageIcon( tasksImage)));
+        menu.add(item = new JMenuItem("Úkoly",new ImageIcon( tasksImage)));
+        item.setHorizontalTextPosition(JMenuItem.RIGHT);
+        item.addActionListener(popupMenuListener);
+        menu.add(item = new JMenuItem("Dokonči úkol",new ImageIcon( tasksImage)));
+        item.setHorizontalTextPosition(JMenuItem.RIGHT);
+        item.addActionListener(popupMenuListener);
+        item.setEnabled(false);
+        menu.addSeparator();
+        menu.add(item = new JMenuItem("Konzole",new ImageIcon(consoleImage)));
+        item.setHorizontalTextPosition(JMenuItem.RIGHT);
+        item.addActionListener(popupMenuListener);
+        menu.add(item = new JMenuItem("Nastavení",new ImageIcon(settingsImage)));
         item.setHorizontalTextPosition(JMenuItem.RIGHT);
         item.addActionListener(popupMenuListener);
         menu.addSeparator();
-        menu.add(item = new JMenuItem("Console",new ImageIcon(consoleImage)));
-        item.setHorizontalTextPosition(JMenuItem.RIGHT);
-        item.addActionListener(popupMenuListener);
-        menu.add(item = new JMenuItem("Settings",new ImageIcon(settingsImage)));
-        item.setHorizontalTextPosition(JMenuItem.RIGHT);
-        item.addActionListener(popupMenuListener);
-        menu.addSeparator();
-        menu.add(item = new JMenuItem("Close", new ImageIcon( closeImage)));
+        menu.add(item = new JMenuItem("Odchod domů", new ImageIcon( closeImage)));
 
         item.setHorizontalTextPosition(JMenuItem.RIGHT);
         item.addActionListener(popupMenuListener);

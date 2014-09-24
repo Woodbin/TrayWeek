@@ -11,10 +11,10 @@ public class DebugModule {
     private static  boolean consoleWindowExists;
 
     private static String helpstring = "List of commands \n" +
-            "close                        closes the client\n" +
-            "help                         displays this message\n" +
-            "version                      shows version\n" +
-            "login [login] [password]     logs into server using specified credentials";
+            "close                        ukončí klienta\n" +
+            "help                         zobrazuje tuto zprávu\n" +
+            "version                      ukáže číslo verze\n" +
+            "login [login] [password]     přihlášení na server za použití napsaných údajů";
 
 
     public static DebugModule getInstance() {
