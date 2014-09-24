@@ -13,6 +13,7 @@ public class TasksWindow {
     private JFrame frame;
     private JButton refreshButton;
     private JButton finishTaskButton;
+    private int taskId = 0;
 
 
     //REFERENCES
@@ -72,32 +73,38 @@ public class TasksWindow {
     }
 
 
+    public void changeButtons(TasksWindowButtonStateChange change){
+        switch (change){
+            case STARTTASK:
+                startTaskButton.setEnabled(false);
+                finishTaskButton.setEnabled(true);
+                app.setTaskFinishItemState(true);
+                break;
+            case COMPLETETASK:
+                startTaskButton.setEnabled(true);
+                finishTaskButton.setEnabled(false);
+                app.setTaskFinishItemState(false);
+                break;
+            case POSTPONETASK:
+                startTaskButton.setEnabled(true);
+                finishTaskButton.setEnabled(false);
+                app.setTaskFinishItemState(false);
+                break;
+        }
+    }
 
     private void startTask(){
         //TODO Starting task in TaskWindow
-        startTaskButton.setEnabled(false);
-        finishTaskButton.setEnabled(true);
-        app.setTaskFinishItemState(true);
-        windowHide();
+        DescriptionWindow description = new DescriptionWindow(taskId, false,this);
+        description.createAndShow();
     }
     private void finishTask(){
         //TODO Finishing task in TaskWindow
-        startTaskButton.setEnabled(true);
-        finishTaskButton.setEnabled(false);
-        app.setTaskFinishItemState(false);
-
-
-
+        changeButtons(TasksWindowButtonStateChange.COMPLETETASK);
     }
     private void postponeTask(){
         //TODO Postponing task in TaskWindow
-
-        startTaskButton.setEnabled(true);
-        finishTaskButton.setEnabled(false);
-        app.setTaskFinishItemState(false);
-
-
-
+        changeButtons(TasksWindowButtonStateChange.POSTPONETASK);
     }
     public void refresh(){
         //TODO Refreshing list of tasks in TaskWindow
