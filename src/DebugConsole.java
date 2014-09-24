@@ -1,13 +1,10 @@
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 /**
  * Created by Woodbin on 24.9.2014.
  */
-public class DebugConsole {
+public class DebugConsole{
     private JPanel consolePanel;
     private JTextField commandLine;
     private JButton executeButton;
@@ -31,15 +28,18 @@ public class DebugConsole {
     }
 
     public void consolePrint(String message){
+        //TODO fix console window textarea update
         consoleTextArea.append(message+"\n");
-       // consoleTextArea.setText(consoleTextArea.getText()+message+"\n");
-        consoleTextArea.repaint();
+        consoleTextArea.setCaretPosition(consoleTextArea.getDocument().getLength());
+        consoleTextArea.revalidate();
+
     }
 
 
 
+
     public void create(){
-        consoleFrame.setContentPane(new DebugConsole().consolePanel);
+        consoleFrame.setContentPane(this.consolePanel);
         consoleFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         consoleFrame.addWindowListener(new WindowAdapter() {
             @Override
@@ -47,11 +47,16 @@ public class DebugConsole {
                 windowHide();
             }
         });
+
+        consoleTextArea.setEditable(false);
+
         consoleFrame.pack();
+
         debugmodule.debugOut("Console Window created");
 
 
     }
+
 
 
 
