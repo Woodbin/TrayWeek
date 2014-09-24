@@ -23,6 +23,7 @@ public class App {
     private static Image settingsImage;
     private static Image consoleImage;
     private static Image closeImage;
+    private static Image finishImage;
 
 
     private static JPopupMenu menu;
@@ -88,6 +89,7 @@ public class App {
             settingsImage = ImageIO.read(new File("res/computer.png"));
             closeImage = ImageIO.read(new File("res/door_in.png"));
             consoleImage = ImageIO.read(new File("res/console.png"));
+            finishImage = ImageIO.read(new File("res/accept.png"));
 
         } catch (IOException e) {
             debugmodule.debugOut("Error loading icon image!");
@@ -112,6 +114,9 @@ public class App {
                 if(e.getActionCommand()=="Konzole"){
                     showDebugWindow();
                 }
+                if(e.getActionCommand()=="Login"){
+                    showLoginWindow();
+                }
             }
         };
         JMenuItem item;
@@ -120,10 +125,10 @@ public class App {
         menu.add(item = new JMenuItem("Login", new ImageIcon(loginImage)));
         item.setHorizontalTextPosition(JMenuItem.RIGHT);
         item.addActionListener(popupMenuListener);
-        menu.add(item = new JMenuItem("Úkoly",new ImageIcon( tasksImage)));
+        menu.add(item = new JMenuItem("Úkoly", new ImageIcon(tasksImage)));
         item.setHorizontalTextPosition(JMenuItem.RIGHT);
         item.addActionListener(popupMenuListener);
-        menu.add(item = new JMenuItem("Dokonči úkol",new ImageIcon( tasksImage)));
+        menu.add(item = new JMenuItem("Dokonči úkol", new ImageIcon(finishImage)));
         item.setHorizontalTextPosition(JMenuItem.RIGHT);
         item.addActionListener(popupMenuListener);
         item.setEnabled(false);
@@ -158,6 +163,11 @@ public class App {
             debugmodule.setConsoleWindowState(true);
         }
         debugConsole.windowShow();
+    }
+
+    private static void showLoginWindow(){
+        LoginWindow lw = new LoginWindow();
+        lw.createAndShow();
     }
 
     public static void forwardToConsoleWindow(String message){

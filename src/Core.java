@@ -21,7 +21,10 @@ public class Core {
      * @param args parameters
      */
     public static void action(CoreAction ac, String args[]){
-        if(ac==CoreAction.CLOSE) closeCore(Integer.parseInt(args[0]));
+        switch (ac){
+            case CLOSE: closeCore(Integer.parseInt(args[0])); break;
+            case LOGIN: login(args); break;
+        }
     }
 
 
@@ -35,6 +38,13 @@ public class Core {
         debugmodule.debugOut("Closing core with errorcode: " + errorcode + " ~ " + debugmodule.getErrorMessage(errorcode));
         System.exit(errorcode);
 
+
+    }
+
+    private static void login(String args[]){
+        debugmodule.debugOut("Login command called");
+        debugmodule.debugOut("Logging in with login: "+args[0]+"; password: "+args[1] );
+        //TODO Login logic here
 
     }
 
