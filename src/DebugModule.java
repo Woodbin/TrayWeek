@@ -1,5 +1,6 @@
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,6 +17,8 @@ public class DebugModule {
 
     //REFERENCES
     public static App app = App.getInstance();
+    public static Core core = Core.getInstance();
+    public static Parser parser = Parser.getInstance();
 
     private DebugModule() {
         consoleWindowExists=false;
@@ -52,12 +55,20 @@ public class DebugModule {
 
     private static void processIn(String command){
         //TODO command parsing and execution through core
+        ArrayList<String> commands = parser.parseCommand(command);
+        if(commands.get(0).toLowerCase().equals("close")){
+            debugOut("Executing command CLOSE from console");
+            String args[]=new String[1];
+            args[0] = "2";
+            core.action(CoreAction.CLOSE,args);
+        }
     }
 
 
     public static String getErrorMessage(int errorcode){
         switch (errorcode){
             case 1: return "Everything went better than expected";
+            case 2: return "Close from Debugconsole, everything okay";
             default: return "Unknown errorcode: "+errorcode;
         }
     }

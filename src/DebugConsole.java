@@ -22,6 +22,8 @@ public class DebugConsole{
             @Override
             public void mouseReleased(MouseEvent e) {
                 debugmodule.debugOut("Execute button pressed");
+                debugmodule.debugOut("Sending command: "+commandLine.getText());
+                debugmodule.debugIn(commandLine.getText());
                 super.mouseReleased(e);
             }
         });
