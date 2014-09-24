@@ -14,7 +14,9 @@ public class DebugModule {
             "close                        ukončí klienta\n" +
             "help                         zobrazuje tuto zprávu\n" +
             "version                      ukáže číslo verze\n" +
-            "login [login] [password]     přihlášení na server za použití napsaných údajů";
+            "login [login] [password]     přihlášení na server za použití napsaných údajů\n" +
+            "logout                       odhlášení ze serveru\n" +
+            "completeTask                 dokončí aktuálně vybraný úkol";
 
 
     public static DebugModule getInstance() {
@@ -76,6 +78,12 @@ public class DebugModule {
             args[0]=commands.get(1);
             args[1]=commands.get(2);
             core.action(CoreAction.LOGIN,args);
+        }
+        if(commands.get(0).toLowerCase().equals("logout")){
+            core.action(CoreAction.LOGOUT);
+        }
+        if(commands.get(0).toLowerCase().equals("completetask")){
+            core.action(CoreAction.COMPLETETASK);
         }
     }
 
