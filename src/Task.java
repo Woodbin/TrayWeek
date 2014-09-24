@@ -9,6 +9,7 @@ public class Task {
     private int projectId;
     private String description;
     private Timestamp startTimestamp;
+    private Timestamp finishTimestamp;
 
     public Task(int _id, int _projectId, String _description){
         id=_id;
@@ -20,6 +21,12 @@ public class Task {
 
     public void setDescription(String _description){
         description=_description;
+    }
+
+    public void finishTask(){
+        Date date = new Date();
+        finishTimestamp = new Timestamp(date.getTime());
+
     }
 
 

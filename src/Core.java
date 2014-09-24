@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+
 /**
  * Created by Woodbin on 23.9.2014.
  */
 public class Core {
     private static Core coreObject = new Core();
     private static DebugModule debugmodule = DebugModule.getInstance();
-
+    private ArrayList<Project> projects;
 
     private static boolean loggedIn=false;
 
@@ -16,6 +18,8 @@ public class Core {
     }
 
     private Core() {
+        projects = new ArrayList<Project>();
+        createFakeData();
     }
 
     /** Does magic corresponding to action
@@ -86,6 +90,13 @@ public class Core {
 
     }
 
+
+    private void createFakeData(){
+        debugmodule.debugOut("Creating FakeData");
+        for(int i = 0;i<10;i++){
+            projects.add(new Project("fakeProject"+i));
+        }
+    }
 
 
 }

@@ -4,13 +4,11 @@ import java.util.ArrayList;
  * Created by Woodbin on 25.9.2014.
  */
 public class Project {
-    private int projectId;
     private String name;
     private ArrayList<Task> finishedTasks;
 
 
-    public Project(int _projectId, String _name){
-        projectId=_projectId;
+    public Project(String _name){
         name = _name;
         finishedTasks = new ArrayList<Task>();
     }
