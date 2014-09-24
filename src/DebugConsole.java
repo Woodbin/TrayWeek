@@ -1,3 +1,5 @@
+import javafx.scene.input.KeyCode;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -22,11 +24,26 @@ public class DebugConsole{
             @Override
             public void mouseReleased(MouseEvent e) {
                 debugmodule.debugOut("Execute button pressed");
-                debugmodule.debugOut("Sending command: "+commandLine.getText());
-                debugmodule.debugIn(commandLine.getText());
+                commandExecuted();
                 super.mouseReleased(e);
             }
         });
+        commandLine.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if(e.getKeyCode()== KeyCode.ENTER.impl_getCode()){
+                    debugmodule.debugOut("Enter pressed in command line");
+                    commandExecuted();
+
+                }
+            }
+        });
+    }
+
+    public void commandExecuted(){
+        debugmodule.debugOut("Sending command: "+commandLine.getText());
+        debugmodule.debugIn(commandLine.getText());
+        commandLine.setText("");
     }
 
     public void consolePrint(String message){

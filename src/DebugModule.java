@@ -10,6 +10,12 @@ public class DebugModule {
     private static DebugModule ourInstance = new DebugModule();
     private static  boolean consoleWindowExists;
 
+    private static String helpstring = "List of commands \n" +
+            "close                        closes the client\n" +
+            "help                         displays this message\n" +
+            "version                      shows version\n" +
+            "login [login] [password]     logs into server using specified credentials";
+
 
     public static DebugModule getInstance() {
         return ourInstance;
@@ -46,7 +52,6 @@ public class DebugModule {
 
         Timestamp timestamp = new Timestamp(date.getTime());
         if(consoleWindowExists){
-            //TODO console window output
             app.forwardToConsoleWindow("["+ timestamp.toString()+"] "+message);
 
         }
@@ -57,10 +62,20 @@ public class DebugModule {
         //TODO command parsing and execution through core
         ArrayList<String> commands = parser.parseCommand(command);
         if(commands.get(0).toLowerCase().equals("close")){
-            debugOut("Executing command CLOSE from console");
             String args[]=new String[1];
             args[0] = "2";
             core.action(CoreAction.CLOSE,args);
+        }
+        if(commands.get(0).toLowerCase().equals("help")){
+            debugOut(helpstring);
+        }
+        if(commands.get(0).toLowerCase().equals("version")){
+            debugOut("WIP Alpha");
+        }if(commands.get(0).toLowerCase().equals("login")){
+            String args[]=new String[2];
+            args[0]=commands.get(1);
+            args[1]=commands.get(2);
+            core.action(CoreAction.LOGIN,args);
         }
     }
 
