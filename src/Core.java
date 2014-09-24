@@ -6,7 +6,10 @@ public class Core {
     private static DebugModule debugmodule = DebugModule.getInstance();
 
 
+    private static boolean loggedIn=false;
 
+    //REFERENCES
+    private static App app = App.getInstance();
 
     public static Core getInstance() {
         return coreObject;
@@ -24,7 +27,15 @@ public class Core {
         switch (ac){
             case CLOSE: closeCore(Integer.parseInt(args[0])); break;
             case LOGIN: login(args); break;
+            case LOGOUT: logout(); break;
+            case COMPLETETASK: completeTask(); break;
         }
+    }
+
+    public static void action(CoreAction ac){
+        String args[]=new String[1];
+        args[0] = "1";
+        action(ac,args);
     }
 
 
@@ -46,10 +57,34 @@ public class Core {
         debugmodule.debugOut("Logging in with login: "+args[0]+"; password: "+args[1] );
         //TODO Login logic here
 
+        loggedIn=true;
+        app.setLoginItemState(false);
+        app.setLogoutItemState(true);
+        app.setTasksItemState(true);
     }
 
+    private static void logout(){
+        debugmodule.debugOut("Logging out");
+        //TODO Logout Logic here
 
+        loggedIn=false;
+        app.setLoginItemState(true);
+        app.setLogoutItemState(false);
+        app.setTasksItemState(false);
 
+    }
+
+    private static void completeTask(){
+        //TODO CompleteTask logic here
+        debugmodule.debugOut("Completing task...");
+
+        app.setTaskFinishItemState(false);
+    }
+
+    public static boolean getLoginState(){
+        return loggedIn;
+
+    }
 
 
 

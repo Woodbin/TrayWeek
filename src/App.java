@@ -15,10 +15,12 @@ import java.io.IOException;
 public class App {
     private static App app = new App();
     private static TrayIcon icon;
+    private static boolean tasksWindowState = false;
 
     //IMAGES
     private static Image iconImage;
     private static Image loginImage;
+    private static Image logoutImage;
     private static Image tasksImage;
     private static Image settingsImage;
     private static Image consoleImage;
@@ -32,8 +34,15 @@ public class App {
     private static DebugModule debugmodule = DebugModule.getInstance();
     private static Core core = Core.getInstance();
     private static DebugConsole debugConsole = new DebugConsole();
+    private static TasksWindow tasksWindow = new TasksWindow();
 
 
+    //JPOPUPMENU ITEM CONSTATS
+
+    private static final int loginItem = 2;
+    private static final int logoutItem = 3;
+    private static final int tasksItem = 4;
+    private static final int finishTaskItem = 5;
 
     public static App getInstance() {
         return app;
@@ -85,6 +94,7 @@ public class App {
 
             iconImage = ImageIO.read(new File("res/calendar.png"));
             loginImage = ImageIO.read(new File("res/lock_go.png"));
+            logoutImage = ImageIO.read(new File("res/lock_break.png"));
             tasksImage = ImageIO.read(new File("res/note.png"));
             settingsImage = ImageIO.read(new File("res/computer.png"));
             closeImage = ImageIO.read(new File("res/door_in.png"));
@@ -107,15 +117,23 @@ public class App {
             public void actionPerformed(ActionEvent e) {
                 debugmodule.debugOut("Popup menu item ["+ e.getActionCommand()+"] was pressed.");
                 if(e.getActionCommand()=="Odchod domů"){
-                    String args[]=new String[1];
-                    args[0] = "1";
-                    core.action(CoreAction.CLOSE,args);
+
+                    core.action(CoreAction.CLOSE);
                 }
                 if(e.getActionCommand()=="Konzole"){
                     showDebugWindow();
                 }
                 if(e.getActionCommand()=="Login"){
                     showLoginWindow();
+                }
+                if(e.getActionCommand()=="Úkoly"){
+                    showTasksWindow();
+                }
+                if(e.getActionCommand()=="Logout"){
+                    core.action(CoreAction.LOGOUT);
+                }
+                if(e.getActionCommand()=="Dokonči úkol"){
+                    core.action(CoreAction.COMPLETETASK);
                 }
             }
         };
@@ -125,9 +143,14 @@ public class App {
         menu.add(item = new JMenuItem("Login", new ImageIcon(loginImage)));
         item.setHorizontalTextPosition(JMenuItem.RIGHT);
         item.addActionListener(popupMenuListener);
+        menu.add(item = new JMenuItem("Logout", new ImageIcon(logoutImage)));
+        item.setHorizontalTextPosition(JMenuItem.RIGHT);
+        item.setEnabled(false);
+        item.addActionListener(popupMenuListener);
         menu.add(item = new JMenuItem("Úkoly", new ImageIcon(tasksImage)));
         item.setHorizontalTextPosition(JMenuItem.RIGHT);
         item.addActionListener(popupMenuListener);
+        item.setEnabled(false);
         menu.add(item = new JMenuItem("Dokonči úkol", new ImageIcon(finishImage)));
         item.setHorizontalTextPosition(JMenuItem.RIGHT);
         item.addActionListener(popupMenuListener);
@@ -167,8 +190,44 @@ public class App {
 
     private static void showLoginWindow(){
         LoginWindow lw = new LoginWindow();
+        debugmodule.debugOut("Showing LoginWindow");
         lw.createAndShow();
     }
+
+    private static void showTasksWindow(){
+        if(!tasksWindowState){
+            tasksWindow.create();
+            tasksWindowState = true;
+        }
+        tasksWindow.windowShow();
+    }
+
+    public static void setTaskFinishItemState(boolean state){
+        menu.getComponent(finishTaskItem).setEnabled(state);
+        debugmodule.debugOut("finishTaskItem set to "+ menu.getComponent(finishTaskItem).isEnabled());
+        menu.revalidate();
+    }
+
+    public static void setLoginItemState(boolean state){
+        menu.getComponent(loginItem).setEnabled(state);
+        debugmodule.debugOut("loginItem set to "+ menu.getComponent(loginItem).isEnabled());
+        menu.revalidate();
+    }
+    public static void setLogoutItemState(boolean state){
+        menu.getComponent(logoutItem).setEnabled(state);
+        debugmodule.debugOut("logoutItem set to "+ menu.getComponent(logoutItem).isEnabled());
+        menu.revalidate();
+    }
+
+    public static void setTasksItemState(boolean state){
+        menu.getComponent(tasksItem).setEnabled(state);
+        debugmodule.debugOut("tasksItem set to "+ menu.getComponent(tasksItem).isEnabled());
+        menu.revalidate();
+    }
+
+
+
+
 
     public static void forwardToConsoleWindow(String message){
         debugConsole.consolePrint(message);

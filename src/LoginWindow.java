@@ -11,7 +11,10 @@ public class LoginWindow {
     private JPanel loginWindowPane;
     private JPasswordField passwordField;
     private JFrame frame;
+
+    //REFERENCES
     private static Core core = Core.getInstance();
+    private static App app = App.getInstance();
     private static DebugModule debug = DebugModule.getInstance();
 
 
