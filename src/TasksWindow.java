@@ -7,12 +7,13 @@ import java.awt.event.MouseEvent;
  */
 public class TasksWindow {
     private JList projectsList;
-    private JPanel tasksPanel;
+    private JPanel projectsPanel;
     private JButton startTaskButton;
     private JButton postponeTaskButton;
     private JFrame frame;
     private JButton refreshButton;
     private JButton finishTaskButton;
+    private JScrollPane projectsScrollPane;
     private int currentProjectId = 0;
     private Task currentTask;
     private DefaultListModel listModel;
@@ -25,7 +26,7 @@ public class TasksWindow {
 
     public void create(){
         frame = new JFrame("TasksWindow");
-        frame.setContentPane(tasksPanel);
+        frame.setContentPane(projectsPanel);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         listModel = new DefaultListModel();
         refresh();
