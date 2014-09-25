@@ -13,7 +13,7 @@ public class DescriptionWindow {
     private JLabel descriptionLabel;
     private JButton commitButton;
     private JButton cancelButton;
-    private int project;
+    private String project;
     private JFrame frame;
     private boolean finishing;
 
@@ -31,7 +31,7 @@ public class DescriptionWindow {
         frame.setVisible(true);
     }
 
-    public DescriptionWindow(int _project, final boolean _finishing, ProjectsWindow parent) {
+    public DescriptionWindow(String _project, final boolean _finishing, ProjectsWindow parent) {
         commitButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -75,25 +75,33 @@ public class DescriptionWindow {
 
     private void commitTask(){
         if(!finishing){
+            try{
             projectsWindow.changeButtons(ProjectsWindowButtonStateChange.STARTTASK);
-            //TODO Commit task description and start task
             Task newTask = new Task(project, descriptionTextPane.getText());
-            debug.debugOut("Creating new task for project "+core.getProjects().get(project).getName()+" with description: \n"+descriptionTextPane.getText()+"\n and timestamp "+newTask.getStartTimestamp().toString());
-            projectsWindow.setCurrentTask(newTask);}
+            debug.debugOut("Creating new task for project "+core.getProjectById(project).getName()+" with description: \n"+descriptionTextPane.getText()+"\n and timestamp "+newTask.getStartTimestamp().toString());
+            projectsWindow.setCurrentTask(newTask);
            projectsWindow.windowHide();
             frame.dispose();
+            }catch(ProjectDoesntExistException e){
+                debug.debugOut("Task can't be added to nonexisting project!");
+            }
+        }
+
         if(finishing){
-            Task appendedTask = projectsWindow.getCurrentTask();
-            appendedTask.finishTask();
-            appendedTask.setDescription(descriptionTextPane.getText());
-            debug.debugOut("Finishing task for project "+core.getProjects().get(project).getName()+" with description: \n"+appendedTask.getDescription()+"\n and timestamp "+appendedTask.getFinishTimestamp().toString());
-            core.getProjects().get(appendedTask.getProjectId()).appendTask(appendedTask);
-            projectsWindow.changeButtons(ProjectsWindowButtonStateChange.COMPLETETASK);
-            frame.dispose();
+            try {
+                Task appendedTask = projectsWindow.getCurrentTask();
+                appendedTask.finishTask();
+                appendedTask.setDescription(descriptionTextPane.getText());
+                debug.debugOut("Finishing task for project " + core.getProjectById(project).getName() + " with description: \n" + appendedTask.getDescription() + "\n and timestamp " + appendedTask.getFinishTimestamp().toString());
+                core.getProjectById(appendedTask.getProjectId()).appendTask(appendedTask);
+                projectsWindow.changeButtons(ProjectsWindowButtonStateChange.COMPLETETASK);
+                frame.dispose();
+            }catch (ProjectDoesntExistException e){
+                debug.debugOut("Task can't be added to nonexisting project!");
+            }
         }
     }
     private void cancel(){
-        //TODO Cancel
         frame.dispose();
     }
 

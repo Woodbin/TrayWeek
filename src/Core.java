@@ -87,8 +87,12 @@ public class Core {
         app.setTaskFinishItemState(false);
     }
     private static void newProject(String args[]){
-        debug.debugOut("Creating new project: " + args[0]);
-        projects.add(new Project(args[0]));
+        debug.debugOut("Creating new project with id: " + args[0]+" and name: "+args[1]);
+        try{projects.add(new Project(args[0],args[1]));}
+        catch(ProjectAlreadyExitsException e){
+            debug.debugOut("Project with id: "+args[0]+" already exists!");
+        }
+        ;
     }
 
     public static boolean getLoginState(){
@@ -100,9 +104,28 @@ public class Core {
     private static void createFakeData(){
         debug.debugOut("Creating FakeData");
         for(int i = 0;i<10;i++){
-            projects.add(new Project("fakeProject"+i));
-            debug.debugOut("Created Fake Project: " + projects.get(i).getName());
+            try{
+                projects.add(new Project(i+"","fakeProject"+i));
+                debug.debugOut("Created Fake Project: " + projects.get(i).getName());
+
+            }catch (ProjectAlreadyExitsException e){
+                    debug.debugOut("Project with id: "+i+" already exists!");
+                }
+            }
         }
+
+
+    public static Project getProjectById(String id) throws ProjectDoesntExistException{
+        int temp=-1;
+        for(int i = 0; i<projects.size();i++){
+            if(id.equals(projects.get(i).getId()))
+            { temp = i;
+            debug.debugOut("Found project with id: "+projects.get(i).getId());
+            }
+        }
+        if(temp==-1 ) throw new ProjectDoesntExistException("Project doesn't exist!");
+        return projects.get(temp);
+
     }
 
     public static ArrayList<Project> getProjects(){

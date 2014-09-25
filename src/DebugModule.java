@@ -16,7 +16,8 @@ public class DebugModule {
             "version                      ukáže číslo verze\n" +
             "login [login] [password]     přihlášení na server za použití napsaných údajů\n" +
             "logout                       odhlášení ze serveru\n" +
-            "completeTask                 dokončí aktuálně vybraný úkol";
+            "completeTask                 dokončí aktuálně vybraný úkol\n" +
+            "new {project} [id] [name]    vytvoří nový fakeproject";
 
 
     public static DebugModule getInstance() {
@@ -88,6 +89,7 @@ public class DebugModule {
             if(commands.get(1).toLowerCase().equals("project")){
                 String args[]=new String[1];
                 args[0]=commands.get(2);
+                args[1]=commands.get(3);
                 core.action(CoreAction.NEWPROJECT,args);
             }
         }
@@ -98,6 +100,7 @@ public class DebugModule {
         switch (errorcode){
             case 1: return "Everything went better than expected";
             case 2: return "Close from Debugconsole, everything okay";
+            case 3: return "Project doesn't exits!";
             default: return "Unknown errorcode: "+errorcode;
         }
     }

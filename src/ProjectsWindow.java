@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Woodbin on 24.9.2014.
@@ -14,7 +16,7 @@ public class ProjectsWindow {
     private JButton refreshButton;
     private JButton finishTaskButton;
     private JScrollPane projectsScrollPane;
-    private int currentProjectId = 0;
+    private String currentProjectId;
     private Task currentTask;
     private DefaultListModel listModel;
 
@@ -105,8 +107,15 @@ public class ProjectsWindow {
 
     private void startTask() {
         if (!projectsList.isSelectionEmpty()){
-        currentProjectId=projectsList.getSelectedIndex();
-        DescriptionWindow descriptionWindow = new DescriptionWindow(currentProjectId, false, this);
+            ArrayList<String> id = new ArrayList<String>(Arrays.asList(listModel.get(projectsList.getSelectedIndex()).toString().split(" ")));
+            debug.debugOut(id.get(0));
+
+            try {
+                currentProjectId=core.getProjectById(id.get(0)).getId();
+            } catch (ProjectDoesntExistException e) {
+                e.printStackTrace();
+            }
+            DescriptionWindow descriptionWindow = new DescriptionWindow(currentProjectId, false, this);
         descriptionWindow.createAndShow();
         }else {
             debug.debugOut("No project selected!");
@@ -123,7 +132,8 @@ public class ProjectsWindow {
     public void refresh(){
         listModel.clear();
         for(int i=0;i<core.getProjects().size();i++){
-            listModel.addElement(core.getProjects().get(i).getName());
+            listModel.addElement(core.getProjects().get(i).getId()+" "+core.getProjects().get(i).getName());
+            debug.debugOut("Listmodel element "+i+": "+listModel.get(i).toString());
         }
     }
 

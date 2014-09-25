@@ -5,12 +5,12 @@ import java.util.Date;
  * Created by Woodbin on 25.9.2014.
  */
 public class Task {
-    private int projectId;
+    private String projectId;
     private String description;
     private Timestamp startTimestamp;
     private Timestamp finishTimestamp;
 
-    public Task( int _projectId, String _description){
+    public Task( String _projectId, String _description){
         projectId=_projectId;
         description=_description;
         Date date = new Date();
@@ -25,7 +25,7 @@ public class Task {
         Date date = new Date();
         finishTimestamp = new Timestamp(date.getTime());
     }
-    public int getProjectId(){
+    public String getProjectId(){
         return projectId;
     }
 
