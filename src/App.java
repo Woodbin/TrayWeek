@@ -31,10 +31,10 @@ public class App {
     private static JPopupMenu menu;
 
     //REFERENCES
-    private static DebugModule debugmodule = DebugModule.getInstance();
+    private static DebugModule debug = DebugModule.getInstance();
     private static Core core = Core.getInstance();
     private static DebugConsole debugConsole = new DebugConsole();
-    private static TasksWindow tasksWindow = new TasksWindow();
+    private static ProjectsWindow projectsWindow = new ProjectsWindow();
 
 
     //JPOPUPMENU ITEM CONSTATS
@@ -73,7 +73,7 @@ public class App {
         });
 
         if(!SystemTray.isSupported()){
-            debugmodule.debugOut("SystemTray is not supported!");
+            debug.debugOut("SystemTray is not supported!");
 
         }
         SystemTray tray = SystemTray.getSystemTray();
@@ -81,7 +81,7 @@ public class App {
         try{
             tray.add(icon);
         }catch (AWTException e){
-            debugmodule.debugOut("TrayIcon could not be added");
+            debug.debugOut("TrayIcon could not be added");
         }
 
     }
@@ -102,7 +102,7 @@ public class App {
             finishImage = ImageIO.read(new File("res/accept.png"));
 
         } catch (IOException e) {
-            debugmodule.debugOut("Error loading icon image!");
+            debug.debugOut("Error loading icon image!");
             e.printStackTrace();
         }
     }
@@ -115,7 +115,7 @@ public class App {
         ActionListener popupMenuListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                debugmodule.debugOut("Popup menu item ["+ e.getActionCommand()+"] was pressed.");
+                debug.debugOut("Popup menu item [" + e.getActionCommand() + "] was pressed.");
                 if(e.getActionCommand()=="Odchod domů"){
 
                     core.action(CoreAction.CLOSE);
@@ -181,47 +181,47 @@ public class App {
     }
 
     private static void showDebugWindow(){
-        if(!debugmodule.getConsoleWindowState()){
+        if(!debug.getConsoleWindowState()){
             debugConsole.create();
-            debugmodule.setConsoleWindowState(true);
+            debug.setConsoleWindowState(true);
         }
         debugConsole.windowShow();
     }
 
     private static void showLoginWindow(){
         LoginWindow lw = new LoginWindow();
-        debugmodule.debugOut("Showing LoginWindow");
+        debug.debugOut("Showing LoginWindow");
         lw.createAndShow();
     }
 
     private static void showTasksWindow(){
         if(!tasksWindowState){
-            tasksWindow.create();
+            projectsWindow.create();
             tasksWindowState = true;
         }
-        tasksWindow.windowShow();
+        projectsWindow.windowShow();
     }
 
     public static void setTaskFinishItemState(boolean state){
         menu.getComponent(finishTaskItem).setEnabled(state);
-        debugmodule.debugOut("finishTaskItem set to "+ menu.getComponent(finishTaskItem).isEnabled());
+        debug.debugOut("finishTaskItem set to " + menu.getComponent(finishTaskItem).isEnabled());
         menu.revalidate();
     }
 
     public static void setLoginItemState(boolean state){
         menu.getComponent(loginItem).setEnabled(state);
-        debugmodule.debugOut("loginItem set to "+ menu.getComponent(loginItem).isEnabled());
+        debug.debugOut("loginItem set to " + menu.getComponent(loginItem).isEnabled());
         menu.revalidate();
     }
     public static void setLogoutItemState(boolean state){
         menu.getComponent(logoutItem).setEnabled(state);
-        debugmodule.debugOut("logoutItem set to "+ menu.getComponent(logoutItem).isEnabled());
+        debug.debugOut("logoutItem set to " + menu.getComponent(logoutItem).isEnabled());
         menu.revalidate();
     }
 
     public static void setTasksItemState(boolean state){
         menu.getComponent(tasksItem).setEnabled(state);
-        debugmodule.debugOut("tasksItem set to "+ menu.getComponent(tasksItem).isEnabled());
+        debug.debugOut("tasksItem set to " + menu.getComponent(tasksItem).isEnabled());
         menu.revalidate();
     }
 
@@ -259,15 +259,15 @@ public class App {
      */
     private static class PopupPrintListener implements PopupMenuListener {
         public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-            debugmodule.debugOut("Popup menu will be visible!");
+            debug.debugOut("Popup menu will be visible!");
         }
 
         public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-            debugmodule.debugOut("Popup menu will be invisible!");
+            debug.debugOut("Popup menu will be invisible!");
         }
 
         public void popupMenuCanceled(PopupMenuEvent e) {
-            debugmodule.debugOut("Popup menu is hidden!");
+            debug.debugOut("Popup menu is hidden!");
         }
     }
 }

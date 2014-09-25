@@ -5,13 +5,13 @@ import java.util.ArrayList;
  */
 public class Core {
     private static Core coreObject = new Core();
-    private static DebugModule debugmodule = DebugModule.getInstance();
     private static ArrayList<Project> projects;
 
     private static boolean loggedIn=false;
 
     //REFERENCES
     private static App app = App.getInstance();
+    private static DebugModule debug = DebugModule.getInstance();
 
     public static Core getInstance() {
         return coreObject;
@@ -52,15 +52,15 @@ public class Core {
      * @param errorcode
      */
     private static void closeCore(int errorcode){
-        debugmodule.debugOut("Closing core with errorcode: " + errorcode + " ~ " + debugmodule.getErrorMessage(errorcode));
+        debug.debugOut("Closing core with errorcode: " + errorcode + " ~ " + debug.getErrorMessage(errorcode));
         System.exit(errorcode);
 
 
     }
 
     private static void login(String args[]){
-        debugmodule.debugOut("Login command called");
-        debugmodule.debugOut("Logging in with login: "+args[0]+"; password: "+args[1] );
+        debug.debugOut("Login command called");
+        debug.debugOut("Logging in with login: " + args[0] + "; password: " + args[1]);
         //TODO Login logic here
 
         loggedIn=true;
@@ -70,7 +70,7 @@ public class Core {
     }
 
     private static void logout(){
-        debugmodule.debugOut("Logging out");
+        debug.debugOut("Logging out");
         //TODO Logout Logic here
 
         loggedIn=false;
@@ -82,12 +82,12 @@ public class Core {
 
     private static void completeTask(){
         //TODO CompleteTask logic here
-        debugmodule.debugOut("Completing task...");
+        debug.debugOut("Completing task...");
 
         app.setTaskFinishItemState(false);
     }
     private static void newProject(String args[]){
-        debugmodule.debugOut("Creating new project: "+args[0]);
+        debug.debugOut("Creating new project: " + args[0]);
         projects.add(new Project(args[0]));
     }
 
@@ -98,10 +98,10 @@ public class Core {
 
 
     private static void createFakeData(){
-        debugmodule.debugOut("Creating FakeData");
+        debug.debugOut("Creating FakeData");
         for(int i = 0;i<10;i++){
             projects.add(new Project("fakeProject"+i));
-            debugmodule.debugOut("Created Fake Project: "+projects.get(i).getName());
+            debug.debugOut("Created Fake Project: " + projects.get(i).getName());
         }
     }
 

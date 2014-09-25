@@ -16,14 +16,14 @@ public class DebugConsole{
 
 
     //REFERENCES
-    private static DebugModule debugmodule = DebugModule.getInstance();
+    private static DebugModule debug = DebugModule.getInstance();
 
 
     public DebugConsole() {
         executeButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                debugmodule.debugOut("Execute button pressed");
+                debug.debugOut("Execute button pressed");
                 commandExecuted();
                 super.mouseReleased(e);
             }
@@ -32,7 +32,7 @@ public class DebugConsole{
             @Override
             public void keyReleased(KeyEvent e) {
                 if(e.getKeyCode()== KeyCode.ENTER.impl_getCode()){
-                    debugmodule.debugOut("Enter pressed in command line");
+                    debug.debugOut("Enter pressed in command line");
                     commandExecuted();
 
                 }
@@ -41,8 +41,8 @@ public class DebugConsole{
     }
 
     public void commandExecuted(){
-        debugmodule.debugOut("Sending command: "+commandLine.getText());
-        debugmodule.debugIn(commandLine.getText());
+        debug.debugOut("Sending command: " + commandLine.getText());
+        debug.debugIn(commandLine.getText());
         commandLine.setText("");
     }
 
@@ -70,7 +70,7 @@ public class DebugConsole{
 
         consoleFrame.pack();
 
-        debugmodule.debugOut("Console Window created");
+        debug.debugOut("Console Window created");
 
 
     }
@@ -80,12 +80,12 @@ public class DebugConsole{
 
     public void windowShow(){
         consoleFrame.show();
-        debugmodule.debugOut("Debug Console showed");
+        debug.debugOut("Debug Console showed");
     }
 
     public void windowHide(){
         consoleFrame.hide();
-        debugmodule.debugOut("Debug Console hidden");
+        debug.debugOut("Debug Console hidden");
 
     }
 }

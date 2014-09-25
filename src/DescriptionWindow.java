@@ -14,7 +14,7 @@ public class DescriptionWindow {
     private JButton commitButton;
     private JButton cancelButton;
     private String project;
-    private TasksWindow tasksWindow;
+    private ProjectsWindow projectsWindow;
     private JFrame frame;
     private boolean finishing;
 
@@ -26,7 +26,7 @@ public class DescriptionWindow {
         frame.setVisible(true);
     }
 
-    public DescriptionWindow(String _project, final boolean _finishing, TasksWindow parent) {
+    public DescriptionWindow(String _project, final boolean _finishing, ProjectsWindow parent) {
         commitButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -42,7 +42,7 @@ public class DescriptionWindow {
             }
 
         });
-        tasksWindow=parent;
+        projectsWindow =parent;
         project =_project;
         finishing = _finishing;
         descriptionLabel.setText("Task for project "+ project);
@@ -67,8 +67,8 @@ public class DescriptionWindow {
     }
 
     private void commitTask(){
-        tasksWindow.changeButtons(TasksWindowButtonStateChange.STARTTASK);
-        tasksWindow.windowHide();
+        projectsWindow.changeButtons(ProjectsWindowButtonStateChange.STARTTASK);
+        projectsWindow.windowHide();
         frame.dispose();
         //TODO Commit task description and start task
     }

@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 /**
  * Created by Woodbin on 24.9.2014.
  */
-public class TasksWindow {
+public class ProjectsWindow {
     private JList projectsList;
     private JPanel projectsPanel;
     private JButton startTaskButton;
@@ -25,7 +25,7 @@ public class TasksWindow {
     private static App app = App.getInstance();
 
     public void create(){
-        frame = new JFrame("TasksWindow");
+        frame = new JFrame("ProjectsWindow");
         frame.setContentPane(projectsPanel);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         listModel = new DefaultListModel();
@@ -34,10 +34,10 @@ public class TasksWindow {
 
         frame.pack();
 
-        debug.debugOut("TasksWindow created");
+        debug.debugOut("ProjectsWindow created");
     }
 
-    public TasksWindow() {
+    public ProjectsWindow() {
         startTaskButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -74,15 +74,15 @@ public class TasksWindow {
     public void windowShow(){
         frame.show();
         refresh();
-        debug.debugOut("TasksWindow showed");
+        debug.debugOut("ProjectsWindow showed");
     }
     public void windowHide(){
         frame.hide();
-        debug.debugOut("TasksWindow hidden");
+        debug.debugOut("ProjectsWindow hidden");
     }
 
 
-    public void changeButtons(TasksWindowButtonStateChange change){
+    public void changeButtons(ProjectsWindowButtonStateChange change){
         switch (change){
             case STARTTASK:
                 startTaskButton.setEnabled(false);
@@ -109,11 +109,11 @@ public class TasksWindow {
     }
     private void finishTask(){
         //TODO Finishing task in TaskWindow
-        changeButtons(TasksWindowButtonStateChange.COMPLETETASK);
+        changeButtons(ProjectsWindowButtonStateChange.COMPLETETASK);
     }
     private void postponeTask(){
         //TODO Postponing task in TaskWindow
-        changeButtons(TasksWindowButtonStateChange.POSTPONETASK);
+        changeButtons(ProjectsWindowButtonStateChange.POSTPONETASK);
     }
     public void refresh(){
         //TODO Refreshing list of tasks in TaskWindow
