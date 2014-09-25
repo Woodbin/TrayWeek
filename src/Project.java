@@ -21,7 +21,9 @@ public class Project {
         return finishedTasks.get(_taskId);
     }
 
-
+    public String getName(){
+        return name;
+    }
 
 
 }

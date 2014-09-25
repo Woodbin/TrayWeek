@@ -6,14 +6,16 @@ import java.awt.event.MouseEvent;
  * Created by Woodbin on 24.9.2014.
  */
 public class TasksWindow {
-    private JList tasksList;
+    private JList projectsList;
     private JPanel tasksPanel;
     private JButton startTaskButton;
     private JButton postponeTaskButton;
     private JFrame frame;
     private JButton refreshButton;
     private JButton finishTaskButton;
-    private int taskId = 0;
+    private int currentProjectId = 0;
+    private Task currentTask;
+    private DefaultListModel listModel;
 
 
     //REFERENCES
@@ -25,6 +27,10 @@ public class TasksWindow {
         frame = new JFrame("TasksWindow");
         frame.setContentPane(tasksPanel);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        listModel = new DefaultListModel();
+        refresh();
+        projectsList.setModel(listModel);
+
         frame.pack();
 
         debug.debugOut("TasksWindow created");
@@ -61,10 +67,12 @@ public class TasksWindow {
         });
         finishTaskButton.setEnabled(true);
 
+
     }
 
     public void windowShow(){
         frame.show();
+        refresh();
         debug.debugOut("TasksWindow showed");
     }
     public void windowHide(){
@@ -95,8 +103,8 @@ public class TasksWindow {
 
     private void startTask(){
         //TODO Starting task in TaskWindow
-        DescriptionWindow description = new DescriptionWindow(taskId, false,this);
-        description.createAndShow();
+        DescriptionWindow descriptionWindow = new DescriptionWindow(core.getProjects().get(currentProjectId).getName(), false,this);
+        descriptionWindow.createAndShow();
     }
     private void finishTask(){
         //TODO Finishing task in TaskWindow
@@ -108,9 +116,19 @@ public class TasksWindow {
     }
     public void refresh(){
         //TODO Refreshing list of tasks in TaskWindow
+        listModel.clear();
+        for(int i=0;i<core.getProjects().size();i++){
+            listModel.addElement(core.getProjects().get(i).getName());
+        }
     }
 
 
+    public Task getCurrentTask(){
+        return currentTask;
+    }
+    public void setCurrentTask(Task t){
+        currentTask=t;
+    }
 
 
 

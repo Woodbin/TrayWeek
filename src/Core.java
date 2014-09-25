@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Core {
     private static Core coreObject = new Core();
     private static DebugModule debugmodule = DebugModule.getInstance();
-    private ArrayList<Project> projects;
+    private static ArrayList<Project> projects;
 
     private static boolean loggedIn=false;
 
@@ -33,6 +33,7 @@ public class Core {
             case LOGIN: login(args); break;
             case LOGOUT: logout(); break;
             case COMPLETETASK: completeTask(); break;
+
         }
     }
 
@@ -91,12 +92,15 @@ public class Core {
     }
 
 
-    private void createFakeData(){
+    private static void createFakeData(){
         debugmodule.debugOut("Creating FakeData");
         for(int i = 0;i<10;i++){
             projects.add(new Project("fakeProject"+i));
+            debugmodule.debugOut("Created Fake Project: "+projects.get(i).getName());
         }
     }
 
-
+    public static ArrayList<Project> getProjects(){
+        return projects;
+    }
 }

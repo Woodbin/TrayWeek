@@ -13,7 +13,7 @@ public class DescriptionWindow {
     private JLabel descriptionLabel;
     private JButton commitButton;
     private JButton cancelButton;
-    private int taskId;
+    private String project;
     private TasksWindow tasksWindow;
     private JFrame frame;
     private boolean finishing;
@@ -26,7 +26,7 @@ public class DescriptionWindow {
         frame.setVisible(true);
     }
 
-    public DescriptionWindow(int _taskId, final boolean _finishing, TasksWindow parent) {
+    public DescriptionWindow(String _project, final boolean _finishing, TasksWindow parent) {
         commitButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -43,9 +43,9 @@ public class DescriptionWindow {
 
         });
         tasksWindow=parent;
-        taskId=_taskId;
+        project =_project;
         finishing = _finishing;
-        descriptionLabel.setText("Task for project id + "+taskId);
+        descriptionLabel.setText("Task for project "+ project);
 
         if(finishing){
             commitButton.setEnabled(false);
