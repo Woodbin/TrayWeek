@@ -104,7 +104,6 @@ public class ProjectsWindow {
     }
 
     private void startTask() {
-        //TODO Starting task in TaskWindow
         if (!projectsList.isSelectionEmpty()){
         currentProjectId=projectsList.getSelectedIndex();
         DescriptionWindow descriptionWindow = new DescriptionWindow(currentProjectId, false, this);
@@ -114,15 +113,14 @@ public class ProjectsWindow {
         }
     }
     private void finishTask(){
-        //TODO Finishing task in TaskWindow
-        changeButtons(ProjectsWindowButtonStateChange.COMPLETETASK);
+        DescriptionWindow descriptionWindow = new DescriptionWindow(currentProjectId, true, this);
+        descriptionWindow.createAndShow();
     }
     private void postponeTask(){
         //TODO Postponing task in TaskWindow
         changeButtons(ProjectsWindowButtonStateChange.POSTPONETASK);
     }
     public void refresh(){
-        //TODO Refreshing list of tasks in TaskWindow
         listModel.clear();
         for(int i=0;i<core.getProjects().size();i++){
             listModel.addElement(core.getProjects().get(i).getName());

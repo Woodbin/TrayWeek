@@ -53,7 +53,9 @@ public class DescriptionWindow {
         descriptionLabel.setText("Task for project "+ project);
 
         if(finishing){
-            commitButton.setEnabled(false);
+            if(projectsWindow.getCurrentTask().getDescription().equals(""))commitButton.setEnabled(false);
+            descriptionTextPane.setText(projectsWindow.getCurrentTask().getDescription());
+
         }
         descriptionTextPane.addKeyListener(new KeyAdapter() {
             @Override
