@@ -133,6 +133,8 @@ public class App {
                     core.action(CoreAction.LOGOUT);
                 }
                 if(e.getActionCommand()=="Dokonči úkol"){
+                    DescriptionWindow dw = new DescriptionWindow(projectsWindow.getCurrentTask().getProjectId(),true,projectsWindow);
+                    dw.createAndShow();
                     core.action(CoreAction.COMPLETETASK);
                 }
             }

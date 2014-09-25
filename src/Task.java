@@ -24,10 +24,20 @@ public class Task {
     public void finishTask(){
         Date date = new Date();
         finishTimestamp = new Timestamp(date.getTime());
-
+    }
+    public int getProjectId(){
+        return projectId;
     }
 
-
+    public Timestamp getStartTimestamp(){
+        return startTimestamp;
+    }
+    public  Timestamp getFinishTimestamp(){
+        return finishTimestamp;
+    }
+    public String getDescription(){
+        return description;
+    }
 
 
 }

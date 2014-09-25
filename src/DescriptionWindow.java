@@ -13,10 +13,15 @@ public class DescriptionWindow {
     private JLabel descriptionLabel;
     private JButton commitButton;
     private JButton cancelButton;
-    private String project;
-    private ProjectsWindow projectsWindow;
+    private int project;
     private JFrame frame;
     private boolean finishing;
+
+    //REFERENCES
+    private ProjectsWindow projectsWindow;
+    private static Core core = Core.getInstance();
+    private static DebugModule debug = DebugModule.getInstance();
+
 
     public void createAndShow(){
         frame = new JFrame("DescriptionWindow");
@@ -26,7 +31,7 @@ public class DescriptionWindow {
         frame.setVisible(true);
     }
 
-    public DescriptionWindow(String _project, final boolean _finishing, ProjectsWindow parent) {
+    public DescriptionWindow(int _project, final boolean _finishing, ProjectsWindow parent) {
         commitButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -67,13 +72,27 @@ public class DescriptionWindow {
     }
 
     private void commitTask(){
-        projectsWindow.changeButtons(ProjectsWindowButtonStateChange.STARTTASK);
-        projectsWindow.windowHide();
-        frame.dispose();
-        //TODO Commit task description and start task
+        if(!finishing){
+            projectsWindow.changeButtons(ProjectsWindowButtonStateChange.STARTTASK);
+            //TODO Commit task description and start task
+            Task newTask = new Task(project, descriptionTextPane.getText());
+            debug.debugOut("Creating new task for project "+core.getProjects().get(project).getName()+" with description: \n"+descriptionTextPane.getText()+"\n and timestamp "+newTask.getStartTimestamp().toString());
+            projectsWindow.setCurrentTask(newTask);}
+           projectsWindow.windowHide();
+            frame.dispose();
+        if(finishing){
+            Task appendedTask = projectsWindow.getCurrentTask();
+            appendedTask.finishTask();
+            appendedTask.setDescription(descriptionTextPane.getText());
+            debug.debugOut("Finishing task for project "+core.getProjects().get(project).getName()+" with description: \n"+appendedTask.getDescription()+"\n and timestamp "+appendedTask.getFinishTimestamp().toString());
+            core.getProjects().get(appendedTask.getProjectId()).appendTask(appendedTask);
+            projectsWindow.changeButtons(ProjectsWindowButtonStateChange.COMPLETETASK);
+            frame.dispose();
+        }
     }
     private void cancel(){
         //TODO Cancel
+        frame.dispose();
     }
 
 

@@ -24,7 +24,7 @@ public class ProjectsWindow {
     private static DebugModule debug = DebugModule.getInstance();
     private static App app = App.getInstance();
 
-    public void create(){
+    public void create() {
         frame = new JFrame("ProjectsWindow");
         frame.setContentPane(projectsPanel);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -71,19 +71,20 @@ public class ProjectsWindow {
 
     }
 
-    public void windowShow(){
+    public void windowShow() {
         frame.show();
         refresh();
         debug.debugOut("ProjectsWindow showed");
     }
-    public void windowHide(){
+
+    public void windowHide() {
         frame.hide();
         debug.debugOut("ProjectsWindow hidden");
     }
 
 
-    public void changeButtons(ProjectsWindowButtonStateChange change){
-        switch (change){
+    public void changeButtons(ProjectsWindowButtonStateChange change) {
+        switch (change) {
             case STARTTASK:
                 startTaskButton.setEnabled(false);
                 finishTaskButton.setEnabled(true);
@@ -102,10 +103,15 @@ public class ProjectsWindow {
         }
     }
 
-    private void startTask(){
+    private void startTask() {
         //TODO Starting task in TaskWindow
-        DescriptionWindow descriptionWindow = new DescriptionWindow(core.getProjects().get(currentProjectId).getName(), false,this);
+        if (!projectsList.isSelectionEmpty()){
+        currentProjectId=projectsList.getSelectedIndex();
+        DescriptionWindow descriptionWindow = new DescriptionWindow(currentProjectId, false, this);
         descriptionWindow.createAndShow();
+        }else {
+            debug.debugOut("No project selected!");
+        }
     }
     private void finishTask(){
         //TODO Finishing task in TaskWindow
