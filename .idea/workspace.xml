@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8624c596-3173-482f-8e87-0e76873d5ed0" name="Default" comment="Tray Icon work, got leftclick on trayicon working">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core.java" afterPath="$PROJECT_DIR$/src/Core.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DescriptionWindow.java" afterPath="$PROJECT_DIR$/src/DescriptionWindow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project.java" afterPath="$PROJECT_DIR$/src/Project.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Task.java" afterPath="$PROJECT_DIR$/src/Task.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TasksWindow.form" afterPath="$PROJECT_DIR$/src/TasksWindow.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TasksWindow.java" afterPath="$PROJECT_DIR$/src/TasksWindow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CoreAction.java" afterPath="$PROJECT_DIR$/src/CoreAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DebugModule.java" afterPath="$PROJECT_DIR$/src/DebugModule.java" />
     </list>
     <ignored path="TrayWeek.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,25 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginWindow.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LoginWindow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="161" max-vertical-offset="1037">
-              <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#589#769#0" expanded="true" />
-                <element signature="e#758#759#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DebugModule.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DebugModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="592" max-vertical-offset="1581">
-              <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1683">
+              <caret line="82" column="43" selection-start-line="82" selection-start-column="43" selection-end-line="82" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -163,6 +146,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="CoreAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CoreAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="TasksWindow.form" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TasksWindow.form">
           <provider selected="true" editor-type-id="ui-designer">
@@ -170,13 +163,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TasksWindow.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TasksWindow.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TasksWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.1771337" vertical-offset="1479" max-vertical-offset="2380">
-              <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1479" max-vertical-offset="2380">
+              <caret line="110" column="65" selection-start-line="110" selection-start-column="65" selection-end-line="110" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1356#1548#0" expanded="true" />
                 <element signature="e#1537#1538#0" expanded="true" />
                 <element signature="e#1590#1777#0" expanded="true" />
                 <element signature="e#1766#1767#0" expanded="true" />
@@ -191,14 +185,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Core.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Core.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Core.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1870">
-              <caret line="94" column="18" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.24637681" vertical-offset="1326" max-vertical-offset="1955">
+              <caret line="89" column="60" selection-start-line="89" selection-start-column="60" selection-end-line="89" selection-end-column="60" />
               <folding>
-                <element signature="e#2672#2673#0" expanded="true" />
-                <element signature="e#2703#2704#0" expanded="true" />
+                <element signature="e#2891#2892#0" expanded="true" />
+                <element signature="e#2922#2923#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -226,16 +220,16 @@
         <option value="$PROJECT_DIR$/src/LoginWindow.form" />
         <option value="$PROJECT_DIR$/src/TasksWindow.form" />
         <option value="$PROJECT_DIR$/src/LoginWindow.java" />
-        <option value="$PROJECT_DIR$/src/CoreAction.java" />
         <option value="$PROJECT_DIR$/src/App.java" />
-        <option value="$PROJECT_DIR$/src/DebugModule.java" />
         <option value="$PROJECT_DIR$/src/DescriptionWindow.form" />
         <option value="$PROJECT_DIR$/src/TasksWindowButtonStateChange.java" />
         <option value="$PROJECT_DIR$/src/Task.java" />
         <option value="$PROJECT_DIR$/src/DescriptionWindow.java" />
         <option value="$PROJECT_DIR$/src/Project.java" />
-        <option value="$PROJECT_DIR$/src/Core.java" />
         <option value="$PROJECT_DIR$/src/TasksWindow.java" />
+        <option value="$PROJECT_DIR$/src/CoreAction.java" />
+        <option value="$PROJECT_DIR$/src/DebugModule.java" />
+        <option value="$PROJECT_DIR$/src/Core.java" />
       </list>
     </option>
   </component>
@@ -506,7 +500,7 @@
       <updated>1411498833606</updated>
       <workItem from="1411498844740" duration="19743000" />
       <workItem from="1411561895013" duration="137000" />
-      <workItem from="1411586887065" duration="16549000" />
+      <workItem from="1411586887065" duration="17743000" />
     </task>
     <task id="LOCAL-00001" summary="Tray Icon work, basic Core Action processing">
       <created>1411507322104</created>
@@ -520,7 +514,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36429000" />
+    <option name="totallyTimeSpent" value="37623000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -563,8 +557,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1373802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32953367" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1373802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32953367" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -653,8 +647,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="884">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <element signature="e#2672#2673#0" expanded="true" />
-            <element signature="e#2703#2704#0" expanded="true" />
+            <element signature="e#2891#2892#0" expanded="true" />
+            <element signature="e#2922#2923#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -719,8 +713,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="884">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <element signature="e#2672#2673#0" expanded="true" />
-            <element signature="e#2703#2704#0" expanded="true" />
+            <element signature="e#2891#2892#0" expanded="true" />
+            <element signature="e#2922#2923#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -799,14 +793,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CoreAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TasksWindowButtonStateChange.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
@@ -829,14 +815,6 @@
             <element signature="e#589#769#0" expanded="true" />
             <element signature="e#758#759#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DebugModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="592" max-vertical-offset="1581">
-          <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -957,17 +935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1870">
-          <caret line="94" column="18" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
-          <folding>
-            <element signature="e#2672#2673#0" expanded="true" />
-            <element signature="e#2703#2704#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TasksWindow.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -975,10 +942,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TasksWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1771337" vertical-offset="1479" max-vertical-offset="2380">
-          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1479" max-vertical-offset="2380">
+          <caret line="110" column="65" selection-start-line="110" selection-start-column="65" selection-end-line="110" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1356#1548#0" expanded="true" />
             <element signature="e#1537#1538#0" expanded="true" />
             <element signature="e#1590#1777#0" expanded="true" />
             <element signature="e#1766#1767#0" expanded="true" />
@@ -988,6 +956,33 @@
             <element signature="e#3892#3893#0" expanded="true" />
             <element signature="e#3932#3933#0" expanded="true" />
             <element signature="e#3961#3962#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CoreAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DebugModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1683">
+          <caret line="82" column="43" selection-start-line="82" selection-start-column="43" selection-end-line="82" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24637681" vertical-offset="1326" max-vertical-offset="1955">
+          <caret line="89" column="60" selection-start-line="89" selection-start-column="60" selection-end-line="89" selection-end-column="60" />
+          <folding>
+            <element signature="e#2891#2892#0" expanded="true" />
+            <element signature="e#2922#2923#0" expanded="true" />
           </folding>
         </state>
       </provider>

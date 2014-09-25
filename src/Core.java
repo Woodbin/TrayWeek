@@ -33,6 +33,7 @@ public class Core {
             case LOGIN: login(args); break;
             case LOGOUT: logout(); break;
             case COMPLETETASK: completeTask(); break;
+            case NEWPROJECT: newProject(args); break;
 
         }
     }
@@ -84,6 +85,10 @@ public class Core {
         debugmodule.debugOut("Completing task...");
 
         app.setTaskFinishItemState(false);
+    }
+    private static void newProject(String args[]){
+        debugmodule.debugOut("Creating new project: "+args[0]);
+        projects.add(new Project(args[0]));
     }
 
     public static boolean getLoginState(){

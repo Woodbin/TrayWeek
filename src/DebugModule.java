@@ -84,6 +84,12 @@ public class DebugModule {
         }
         if(commands.get(0).toLowerCase().equals("completetask")){
             core.action(CoreAction.COMPLETETASK);
+        }if(commands.get(0).toLowerCase().equals("new")){
+            if(commands.get(1).toLowerCase().equals("project")){
+                String args[]=new String[1];
+                args[0]=commands.get(2);
+                core.action(CoreAction.NEWPROJECT,args);
+            }
         }
     }
 
