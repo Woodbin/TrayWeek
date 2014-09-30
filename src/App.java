@@ -15,7 +15,7 @@ import java.io.IOException;
 public class App {
     private static App app = new App();
     private static TrayIcon icon;
-    private static boolean tasksWindowState = false;
+    private static boolean projectsWindowState = false;
 
     //IMAGES
     private static Image iconImage;
@@ -131,7 +131,7 @@ public class App {
                     showLoginWindow();
                 }
                 if(e.getActionCommand()=="Úkoly"){
-                    showTasksWindow();
+                    showProjectsWindow();
                 }
                 if(e.getActionCommand()=="Logout"){
                     try {
@@ -145,6 +145,7 @@ public class App {
                     dw.createAndShow();
                     try {
                         core.action(CoreAction.COMPLETETASK);
+                        setTaskFinishItemState(false);
                     } catch (CoreException e1) {
                         e1.printStackTrace();
                     }
@@ -194,6 +195,9 @@ public class App {
         return menu;
     }
 
+    /**
+     * Shows console window
+     */
     private static void showDebugWindow(){
         if(!debug.getConsoleWindowState()){
             debugConsole.create();
@@ -202,47 +206,70 @@ public class App {
         debugConsole.windowShow();
     }
 
+    /**
+     * Shows login window
+     */
     private static void showLoginWindow(){
         LoginWindow lw = new LoginWindow();
         debug.debugOut("Showing LoginWindow");
         lw.createAndShow();
     }
 
-    private static void showTasksWindow(){
-        if(!tasksWindowState){
+    /**
+     * Shows ProjectsWindow
+     */
+    private static void showProjectsWindow(){
+        if(!projectsWindowState){
             projectsWindow.create();
-            tasksWindowState = true;
+            projectsWindowState = true;
         }
         projectsWindow.windowShow();
     }
 
+    /**
+     * Sets TaskFinish item in PopupMenu to desired state
+     * @param state
+     */
     public static void setTaskFinishItemState(boolean state){
         menu.getComponent(finishTaskItem).setEnabled(state);
         debug.debugOut("finishTaskItem set to " + menu.getComponent(finishTaskItem).isEnabled());
         menu.revalidate();
     }
 
+    /**
+     * Sets Login item in PopupMenu to desired state
+     * @param state
+     */
     public static void setLoginItemState(boolean state){
         menu.getComponent(loginItem).setEnabled(state);
         debug.debugOut("loginItem set to " + menu.getComponent(loginItem).isEnabled());
         menu.revalidate();
     }
+
+    /**
+     * Sets Logout item in PopupMenu to desired state
+     * @param state
+     */
     public static void setLogoutItemState(boolean state){
         menu.getComponent(logoutItem).setEnabled(state);
         debug.debugOut("logoutItem set to " + menu.getComponent(logoutItem).isEnabled());
         menu.revalidate();
     }
 
+    /**
+     * Sets Tasks item in PopupMenu to desired state
+     * @param state
+     */
     public static void setTasksItemState(boolean state){
         menu.getComponent(tasksItem).setEnabled(state);
         debug.debugOut("tasksItem set to " + menu.getComponent(tasksItem).isEnabled());
         menu.revalidate();
     }
 
-
-
-
-
+    /**
+     * Forwards message to Console Window
+     * @param message
+     */
     public static void forwardToConsoleWindow(String message){
         debugConsole.consolePrint(message);
     }

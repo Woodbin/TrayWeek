@@ -10,6 +10,12 @@ public class Task {
     private Timestamp startTimestamp;
     private Timestamp finishTimestamp;
 
+    /**
+     * Task constructor
+     * @param _projectId project must already exist!
+     * @param _description Can be empty
+     * @throws ProjectDoesntExistException
+     */
     public Task( String _projectId, String _description) throws ProjectDoesntExistException{
         if(Core.checkProjectId(_projectId)){
             projectId=_projectId;
@@ -23,10 +29,17 @@ public class Task {
 
     }
 
+    /**
+     * Sets description (used when finishing task)
+     * @param _description
+     */
     public void setDescription(String _description){
         description=_description;
     }
 
+    /**
+     * Finishes task - gives it finishing timestamp
+     */
     public void finishTask(){
         Date date = new Date();
         finishTimestamp = new Timestamp(date.getTime());

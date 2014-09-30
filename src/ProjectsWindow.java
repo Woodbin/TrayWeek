@@ -26,6 +26,9 @@ public class ProjectsWindow {
     private static DebugModule debug = DebugModule.getInstance();
     private static App app = App.getInstance();
 
+    /**
+     * Factory method
+     */
     public void create() {
         frame = new JFrame("ProjectsWindow");
         frame.setContentPane(projectsPanel);
@@ -39,6 +42,9 @@ public class ProjectsWindow {
         debug.debugOut("ProjectsWindow created");
     }
 
+    /**
+     * Constructor
+     */
     public ProjectsWindow() {
         startTaskButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -73,18 +79,27 @@ public class ProjectsWindow {
 
     }
 
+    /**
+     * Shows window
+     */
     public void windowShow() {
         frame.show();
         refresh();
         debug.debugOut("ProjectsWindow showed");
     }
 
+    /**
+     * Hides window
+     */
     public void windowHide() {
         frame.hide();
         debug.debugOut("ProjectsWindow hidden");
     }
 
-
+    /**
+     * Enables and disables buttons
+     * @param change which king of change we want
+     */
     public void changeButtons(ProjectsWindowButtonStateChange change) {
         switch (change) {
             case STARTTASK:
@@ -105,6 +120,9 @@ public class ProjectsWindow {
         }
     }
 
+    /**
+     * Starts new task
+     */
     private void startTask() {
         if (!projectsList.isSelectionEmpty()){
             ArrayList<String> id = new ArrayList<String>(Arrays.asList(listModel.get(projectsList.getSelectedIndex()).toString().split(" ")));
@@ -121,14 +139,26 @@ public class ProjectsWindow {
             debug.debugOut("No project selected!");
         }
     }
+
+    /**
+     * Finishes task
+     */
     private void finishTask(){
         DescriptionWindow descriptionWindow = new DescriptionWindow(currentProjectId, true, this);
         descriptionWindow.createAndShow();
     }
+
+    /**
+     * Postpones task
+     */
     private void postponeTask(){
         //TODO Postponing task in TaskWindow
         changeButtons(ProjectsWindowButtonStateChange.POSTPONETASK);
     }
+
+    /**
+     * Refreshses list of projects
+     */
     public void refresh(){
         listModel.clear();
         for(int i=0;i<core.getProjects().size();i++){

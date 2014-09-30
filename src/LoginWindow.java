@@ -17,7 +17,9 @@ public class LoginWindow {
     private static App app = App.getInstance();
     private static DebugModule debug = DebugModule.getInstance();
 
-
+    /**
+     * Constructor
+     */
     public LoginWindow() {
         loginButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -29,6 +31,9 @@ public class LoginWindow {
         });
     }
 
+    /**
+     * Factory method
+     */
     public void createAndShow(){
         frame = new JFrame("LoginWindow");
         frame.setContentPane(this.loginWindowPane);
@@ -38,12 +43,17 @@ public class LoginWindow {
     }
 
 
-
+    /**
+     * Hides window
+     */
     public void windowHide(){
         debug.debugOut("Disposing LoginWindow");
         frame.dispose();
     }
 
+    /**
+     * Sends login credentials to core and tries to login
+     */
     private void sendLogin(){
         String args[] = new String[2];
         args[0] = loginTextField.getText();

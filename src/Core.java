@@ -19,6 +19,9 @@ public class Core {
         return coreObject;
     }
 
+    /**
+     * Constructor
+     */
     private Core() {
         projects = new ArrayList<Project>();
         createFakeData();
@@ -28,6 +31,7 @@ public class Core {
      *
      * @param ac enum-which action we do
      * @param args parameters
+     * @throws CoreException
      */
     public static void action(CoreAction ac, String args[]) throws CoreException{
         switch (ac){
@@ -47,6 +51,11 @@ public class Core {
         }
     }
 
+    /**
+     * Does magic corresponding to action - for actions with no parameters
+     * @param ac enum-which action we do
+     * @throws CoreException
+     */
     public static void action(CoreAction ac)throws CoreException{
         String args[]=new String[1];
         args[0] = "1";
@@ -71,10 +80,14 @@ public class Core {
 
     }
 
+    /**
+     * Login method
+     * @param args
+     */
     private static void login(String args[]){
         debug.debugOut("Login command called");
         debug.debugOut("Logging in with login: " + args[0] + "; password: " + args[1]);
-        //TODO Login logic here
+        //TODO Login logic here - MAKE LoginFailedException!!!
 
         loggedIn=true;
         app.setLoginItemState(false);
@@ -82,6 +95,9 @@ public class Core {
         app.setTasksItemState(true);
     }
 
+    /**
+     * Logout method
+     */
     private static void logout(){
         debug.debugOut("Logging out");
         //TODO Logout Logic here
@@ -93,8 +109,11 @@ public class Core {
 
     }
 
+    /**Complete Task
+     * Completes task, sets it's description, appends it to it's project
+     * @param args
+     */
     private static void completeTask(String args[]){
-        //TODO CompleteTask logic here
         try {
             debug.debugOut("Completing task...");
             currentTask.finishTask();
@@ -103,11 +122,15 @@ public class Core {
             getProjectById(currentTask.getProjectId()).appendTask(currentTask);
 
 
-            app.setTaskFinishItemState(false);
         }catch (ProjectDoesntExistException p){
 
         }
     }
+
+    /**
+     * Creates new project
+     * @param args Name of project
+     */
     private static void newProject(String args[]){
         debug.debugOut("Creating new project with id: " + args[0]+" and name: "+args[1]);
         try{projects.add(new Project(args[0],args[1]));}
@@ -117,12 +140,18 @@ public class Core {
         ;
     }
 
+    /**
+     * Returns if logged in or not
+     * @return
+     */
     public static boolean getLoginState(){
         return loggedIn;
 
     }
 
-
+    /**
+     * Creates fake projects
+     */
     private static void createFakeData(){
         debug.debugOut("Creating FakeData");
         for(int i = 0;i<10;i++){
@@ -136,7 +165,12 @@ public class Core {
             }
         }
 
-
+    /**
+     * Find Project with specified projectId and returns it
+     * @param id
+     * @return Project
+     * @throws ProjectDoesntExistException  throws in case the project with specified id doesn't exist
+     */
     public static Project getProjectById(String id) throws ProjectDoesntExistException{
         int temp=-1;
         for(int i = 0; i<projects.size();i++){
@@ -162,6 +196,12 @@ public class Core {
         currentTask = _t;
     }
 
+    /**
+     * Creates new Task with specified projectId and description
+     * @param projectId
+     * @param description
+     * @throws ProjectDoesntExistException throws if the specified project doesn't exist
+     */
     private static void newTask(String projectId, String description) throws ProjectDoesntExistException{
         try {
             currentTask = new Task(projectId, description);
@@ -170,6 +210,11 @@ public class Core {
         }
     }
 
+    /**
+     * Checks if project with id exists
+     * @param id
+     * @return exists or not
+     */
     public static boolean checkProjectId(String id){
         boolean ret = false;
         for(Project p :projects ){

@@ -10,6 +10,9 @@ public class DebugModule {
     private static DebugModule ourInstance = new DebugModule();
     private static  boolean consoleWindowExists;
 
+    /**
+     * Help message
+     */
     private static String helpstring = "List of commands \n" +
             "close                        ukončí klienta\n" +
             "help                         zobrazuje tuto zprávu\n" +
@@ -56,6 +59,10 @@ public class DebugModule {
         return consoleWindowExists;
     }
 
+    /**
+     * Prints message to System.out and DebugConsole (if exists)
+     * @param message
+     */
     private static void processOut(String message){
         Date date = new Date();
 
@@ -67,8 +74,12 @@ public class DebugModule {
         System.out.println("["+ timestamp.toString()+"] "+message);
     }
 
+    /**
+     * Processes command from DebugConsole
+     * @param command
+     */
     private static void processIn(String command){
-        //TODO command parsing and execution through core
+        //TODO more command parsing and execution through core
         ArrayList<String> commands = parser.parseCommand(command);
         if(commands.get(0).toLowerCase().equals("close")){
             String args[]=new String[1];
@@ -122,6 +133,11 @@ public class DebugModule {
     }
 
 
+    /**
+     * Returns message corresponding to errorcode
+     * @param errorcode
+     * @return
+     */
     public static String getErrorMessage(int errorcode){
         switch (errorcode){
             case errorCodeCloseOkay: return "Everything went better than expected";

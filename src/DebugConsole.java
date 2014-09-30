@@ -19,6 +19,9 @@ public class DebugConsole{
     private static DebugModule debug = DebugModule.getInstance();
 
 
+    /**
+     * Constructor
+     */
     public DebugConsole() {
         executeButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -40,12 +43,19 @@ public class DebugConsole{
         });
     }
 
+    /**
+     * Executes command
+     */
     public void commandExecuted(){
         debug.debugOut("Sending command: " + commandLine.getText());
         debug.debugIn(commandLine.getText());
         commandLine.setText("");
     }
 
+    /**
+     * Prints to consoleTextArea
+     * @param message
+     */
     public void consolePrint(String message){
         consoleTextArea.append(message+"\n");
         consoleTextArea.setCaretPosition(consoleTextArea.getDocument().getLength());
@@ -54,8 +64,9 @@ public class DebugConsole{
     }
 
 
-
-
+    /**
+     * factory method
+     */
     public void create(){
         consoleFrame.setContentPane(this.consolePanel);
         consoleFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -76,13 +87,17 @@ public class DebugConsole{
     }
 
 
-
-
+    /**
+     * Shows window
+     */
     public void windowShow(){
         consoleFrame.show();
         debug.debugOut("Debug Console showed");
     }
 
+    /**
+     * Hides window
+     */
     public void windowHide(){
         consoleFrame.hide();
         debug.debugOut("Debug Console hidden");

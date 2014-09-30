@@ -22,7 +22,9 @@ public class DescriptionWindow {
     private static Core core = Core.getInstance();
     private static DebugModule debug = DebugModule.getInstance();
 
-
+    /**
+     * Factory method
+     */
     public void createAndShow(){
         frame = new JFrame("DescriptionWindow");
         frame.setContentPane(descriptionPanel);
@@ -31,6 +33,12 @@ public class DescriptionWindow {
         frame.setVisible(true);
     }
 
+    /**
+     * Constructor
+     * @param _project project id
+     * @param _finishing is the task being finished?
+     * @param parent ProjectsWindow
+     */
     public DescriptionWindow(String _project, final boolean _finishing, ProjectsWindow parent) {
         commitButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -73,6 +81,9 @@ public class DescriptionWindow {
 
     }
 
+    /**
+     * Commits task - if !finishing, creates a new one, if finishing, completes the task
+     */
     private void commitTask(){
         if(!finishing){
             try{
@@ -107,6 +118,10 @@ public class DescriptionWindow {
             }
         }
     }
+
+    /**
+     * DIE POTATO
+     */
     private void cancel(){
         frame.dispose();
     }
