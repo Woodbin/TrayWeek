@@ -21,7 +21,12 @@ public class Project {
     }
 
     public void appendTask(Task _t){
-        finishedTasks.add(_t);
+        try {
+            Core.action(CoreAction.COMPLETETASK);
+            finishedTasks.add(_t);
+        } catch (CoreException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getId(){

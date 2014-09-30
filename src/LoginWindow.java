@@ -48,7 +48,11 @@ public class LoginWindow {
         String args[] = new String[2];
         args[0] = loginTextField.getText();
         args[1] = passwordField.getText();
-        core.action(CoreAction.LOGIN,args);
+        try {
+            core.action(CoreAction.LOGIN,args);
+        } catch (CoreException e) {
+            e.printStackTrace();
+        }
     }
 
 

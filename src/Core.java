@@ -4,14 +4,16 @@ import java.util.ArrayList;
  * Created by Woodbin on 23.9.2014.
  */
 public class Core {
-    private static Core coreObject = new Core();
     private static ArrayList<Project> projects;
+    private static Task currentTask;
+
 
     private static boolean loggedIn=false;
 
     //REFERENCES
     private static App app = App.getInstance();
     private static DebugModule debug = DebugModule.getInstance();
+    private static Core coreObject = new Core();
 
     public static Core getInstance() {
         return coreObject;
@@ -27,7 +29,7 @@ public class Core {
      * @param ac enum-which action we do
      * @param args parameters
      */
-    public static void action(CoreAction ac, String args[]){
+    public static void action(CoreAction ac, String args[]) throws CoreException{
         switch (ac){
             case CLOSE: closeCore(Integer.parseInt(args[0])); break;
             case LOGIN: login(args); break;
@@ -38,10 +40,14 @@ public class Core {
         }
     }
 
-    public static void action(CoreAction ac){
+    public static void action(CoreAction ac)throws CoreException{
         String args[]=new String[1];
         args[0] = "1";
-        action(ac,args);
+        try {
+            action(ac,args);
+        } catch (CoreException e) {
+            throw e;
+        }
     }
 
 
@@ -131,4 +137,34 @@ public class Core {
     public static ArrayList<Project> getProjects(){
         return projects;
     }
+
+    public static Task getCurrentTask(){
+        return currentTask;
+    }
+
+    public static void setCurrentTask(Task _t){
+        currentTask = _t;
+    }
+
+    public static void newTask(String projectId, String description) throws ProjectDoesntExistException{
+        try {
+            currentTask = new Task(projectId, description);
+        }catch(ProjectDoesntExistException p) {
+        throw p;
+        }
+    }
+
+    public static boolean checkProjectId(String id){
+        boolean ret = false;
+        for(Project p :projects ){
+            if(p.getId().equals(id)){
+                ret = true;
+                break;
+            }
+        }
+        return ret;
+    }
+
+
+
 }

@@ -34,6 +34,12 @@ public class DebugModule {
         debugOut("DebugModule active");
     }
 
+    //ERRORCODE VARIABLES
+    public static final int errorCodeCloseOkay = 1;
+    public static final int errorCodeCloseOkayConsole = 2;
+    public static final int errorCodeProjectNA = 3;
+
+
     public static void debugOut(String message){
         processOut(message);
     }
@@ -67,7 +73,11 @@ public class DebugModule {
         if(commands.get(0).toLowerCase().equals("close")){
             String args[]=new String[1];
             args[0] = "2";
-            core.action(CoreAction.CLOSE,args);
+            try {
+                core.action(CoreAction.CLOSE,args);
+            } catch (CoreException e) {
+                e.printStackTrace();
+            }
         }
         if(commands.get(0).toLowerCase().equals("help")){
             debugOut(helpstring);
@@ -78,19 +88,35 @@ public class DebugModule {
             String args[]=new String[2];
             args[0]=commands.get(1);
             args[1]=commands.get(2);
-            core.action(CoreAction.LOGIN,args);
+            try {
+                core.action(CoreAction.LOGIN,args);
+            } catch (CoreException e) {
+                e.printStackTrace();
+            }
         }
         if(commands.get(0).toLowerCase().equals("logout")){
-            core.action(CoreAction.LOGOUT);
+            try {
+                core.action(CoreAction.LOGOUT);
+            } catch (CoreException e) {
+                e.printStackTrace();
+            }
         }
         if(commands.get(0).toLowerCase().equals("completetask")){
-            core.action(CoreAction.COMPLETETASK);
+            try {
+                core.action(CoreAction.COMPLETETASK);
+            } catch (CoreException e) {
+                e.printStackTrace();
+            }
         }if(commands.get(0).toLowerCase().equals("new")){
             if(commands.get(1).toLowerCase().equals("project")){
                 String args[]=new String[1];
                 args[0]=commands.get(2);
                 args[1]=commands.get(3);
-                core.action(CoreAction.NEWPROJECT,args);
+                try {
+                    core.action(CoreAction.NEWPROJECT,args);
+                } catch (CoreException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -98,9 +124,9 @@ public class DebugModule {
 
     public static String getErrorMessage(int errorcode){
         switch (errorcode){
-            case 1: return "Everything went better than expected";
-            case 2: return "Close from Debugconsole, everything okay";
-            case 3: return "Project doesn't exits!";
+            case errorCodeCloseOkay: return "Everything went better than expected";
+            case errorCodeCloseOkayConsole: return "Close from Debugconsole, everything okay";
+            case errorCodeProjectNA: return "Project doesn't exits!";
             default: return "Unknown errorcode: "+errorcode;
         }
     }

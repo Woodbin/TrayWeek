@@ -10,11 +10,17 @@ public class Task {
     private Timestamp startTimestamp;
     private Timestamp finishTimestamp;
 
-    public Task( String _projectId, String _description){
-        projectId=_projectId;
-        description=_description;
-        Date date = new Date();
-        startTimestamp = new Timestamp(date.getTime());
+    public Task( String _projectId, String _description) throws ProjectDoesntExistException{
+        if(Core.checkProjectId(_projectId)){
+            projectId=_projectId;
+            description=_description;
+            Date date = new Date();
+            startTimestamp = new Timestamp(date.getTime());
+        }else{
+
+            DebugModule.debugOut(DebugModule.getErrorMessage(DebugModule.errorCodeProjectNA));
+        }
+
     }
 
     public void setDescription(String _description){

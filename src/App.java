@@ -118,7 +118,11 @@ public class App {
                 debug.debugOut("Popup menu item [" + e.getActionCommand() + "] was pressed.");
                 if(e.getActionCommand()=="Odchod domů"){
 
-                    core.action(CoreAction.CLOSE);
+                    try {
+                        core.action(CoreAction.CLOSE);
+                    } catch (CoreException e1) {
+                        e1.printStackTrace();
+                    }
                 }
                 if(e.getActionCommand()=="Konzole"){
                     showDebugWindow();
@@ -130,12 +134,20 @@ public class App {
                     showTasksWindow();
                 }
                 if(e.getActionCommand()=="Logout"){
-                    core.action(CoreAction.LOGOUT);
+                    try {
+                        core.action(CoreAction.LOGOUT);
+                    } catch (CoreException e1) {
+                        e1.printStackTrace();
+                    }
                 }
                 if(e.getActionCommand()=="Dokonči úkol"){
                     DescriptionWindow dw = new DescriptionWindow(projectsWindow.getCurrentTask().getProjectId(),true,projectsWindow);
                     dw.createAndShow();
-                    core.action(CoreAction.COMPLETETASK);
+                    try {
+                        core.action(CoreAction.COMPLETETASK);
+                    } catch (CoreException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
         };

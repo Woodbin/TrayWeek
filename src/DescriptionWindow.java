@@ -77,11 +77,12 @@ public class DescriptionWindow {
         if(!finishing){
             try{
             projectsWindow.changeButtons(ProjectsWindowButtonStateChange.STARTTASK);
-            Task newTask = new Task(project, descriptionTextPane.getText());
-            debug.debugOut("Creating new task for project "+core.getProjectById(project).getName()+" with description: \n"+descriptionTextPane.getText()+"\n and timestamp "+newTask.getStartTimestamp().toString());
-            projectsWindow.setCurrentTask(newTask);
-           projectsWindow.windowHide();
+            core.newTask(project, descriptionTextPane.getText());
+            debug.debugOut("Creating new task for project "+core.getProjectById(project).getName()+" with description: \n"+descriptionTextPane.getText()+"\n and timestamp "+core.getCurrentTask().getStartTimestamp().toString());
+            projectsWindow.setCurrentTask(core.getCurrentTask());
+            projectsWindow.windowHide();
             frame.dispose();
+
             }catch(ProjectDoesntExistException e){
                 debug.debugOut("Task can't be added to nonexisting project!");
             }
@@ -89,10 +90,10 @@ public class DescriptionWindow {
 
         if(finishing){
             try {
-                Task appendedTask = projectsWindow.getCurrentTask();
+                Task appendedTask = core.getCurrentTask();
                 appendedTask.finishTask();
                 appendedTask.setDescription(descriptionTextPane.getText());
-                debug.debugOut("Finishing task for project " + core.getProjectById(project).getName() + " with description: \n" + appendedTask.getDescription() + "\n and timestamp " + appendedTask.getFinishTimestamp().toString());
+                debug.debugOut("Finishing task for project " + core.getProjectById(appendedTask.getProjectId()).getName() + " with description: \n" + appendedTask.getDescription() + "\n and timestamp " + appendedTask.getFinishTimestamp().toString());
                 core.getProjectById(appendedTask.getProjectId()).appendTask(appendedTask);
                 projectsWindow.changeButtons(ProjectsWindowButtonStateChange.COMPLETETASK);
                 frame.dispose();
