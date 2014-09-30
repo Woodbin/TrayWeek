@@ -76,29 +76,34 @@ public class DescriptionWindow {
     private void commitTask(){
         if(!finishing){
             try{
-            projectsWindow.changeButtons(ProjectsWindowButtonStateChange.STARTTASK);
-            core.newTask(project, descriptionTextPane.getText());
+            String args[] = new String[2];
+            args[0]=project;
+            args[1]=descriptionTextPane.getText();
+            core.action(CoreAction.NEWTASK,args);
             debug.debugOut("Creating new task for project "+core.getProjectById(project).getName()+" with description: \n"+descriptionTextPane.getText()+"\n and timestamp "+core.getCurrentTask().getStartTimestamp().toString());
+            projectsWindow.changeButtons(ProjectsWindowButtonStateChange.STARTTASK);
             projectsWindow.setCurrentTask(core.getCurrentTask());
             projectsWindow.windowHide();
             frame.dispose();
 
             }catch(ProjectDoesntExistException e){
                 debug.debugOut("Task can't be added to nonexisting project!");
+            }catch(CoreException c){
+
             }
         }
 
         if(finishing){
             try {
-                Task appendedTask = core.getCurrentTask();
-                appendedTask.finishTask();
-                appendedTask.setDescription(descriptionTextPane.getText());
-                debug.debugOut("Finishing task for project " + core.getProjectById(appendedTask.getProjectId()).getName() + " with description: \n" + appendedTask.getDescription() + "\n and timestamp " + appendedTask.getFinishTimestamp().toString());
-                core.getProjectById(appendedTask.getProjectId()).appendTask(appendedTask);
+                String args[] = new String[1];
+                args[0]=descriptionTextPane.getText();
+                core.action(CoreAction.COMPLETETASK,args);
                 projectsWindow.changeButtons(ProjectsWindowButtonStateChange.COMPLETETASK);
                 frame.dispose();
             }catch (ProjectDoesntExistException e){
                 debug.debugOut("Task can't be added to nonexisting project!");
+            }catch(CoreException c){
+
             }
         }
     }

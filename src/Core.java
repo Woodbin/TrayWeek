@@ -34,8 +34,15 @@ public class Core {
             case CLOSE: closeCore(Integer.parseInt(args[0])); break;
             case LOGIN: login(args); break;
             case LOGOUT: logout(); break;
-            case COMPLETETASK: completeTask(); break;
+            case COMPLETETASK: completeTask(args); break;
             case NEWPROJECT: newProject(args); break;
+            case NEWTASK:
+                try{
+                    newTask(args[0],args[1]);
+                    break;
+                }catch(ProjectDoesntExistException p){
+
+                }
 
         }
     }
@@ -86,11 +93,20 @@ public class Core {
 
     }
 
-    private static void completeTask(){
+    private static void completeTask(String args[]){
         //TODO CompleteTask logic here
-        debug.debugOut("Completing task...");
+        try {
+            debug.debugOut("Completing task...");
+            currentTask.finishTask();
+            currentTask.setDescription(args[0]);
+            debug.debugOut("Finishing task for project " + getProjectById(currentTask.getProjectId()).getName() + " with description: \n" + currentTask.getDescription() + "\n and timestamp " + currentTask.getFinishTimestamp().toString());
+            getProjectById(currentTask.getProjectId()).appendTask(currentTask);
 
-        app.setTaskFinishItemState(false);
+
+            app.setTaskFinishItemState(false);
+        }catch (ProjectDoesntExistException p){
+
+        }
     }
     private static void newProject(String args[]){
         debug.debugOut("Creating new project with id: " + args[0]+" and name: "+args[1]);
@@ -146,7 +162,7 @@ public class Core {
         currentTask = _t;
     }
 
-    public static void newTask(String projectId, String description) throws ProjectDoesntExistException{
+    private static void newTask(String projectId, String description) throws ProjectDoesntExistException{
         try {
             currentTask = new Task(projectId, description);
         }catch(ProjectDoesntExistException p) {
