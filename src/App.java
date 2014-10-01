@@ -150,6 +150,10 @@ public class App {
                         e1.printStackTrace();
                     }
                 }
+                if(e.getActionCommand().equals("Nastavení")){
+                    SettingsWindow sw = new SettingsWindow();
+                    sw.createAndShow();
+                }
             }
         };
         JMenuItem item;
@@ -224,6 +228,7 @@ public class App {
             projectsWindowState = true;
         }
         projectsWindow.windowShow();
+
     }
 
     /**
@@ -273,7 +278,7 @@ public class App {
     public static void forwardToConsoleWindow(String message){
         debugConsole.consolePrint(message);
     }
-
+    public static void rebuildProjectsView(){projectsWindow.refresh();}
     /**
      * Custom Mouse Popup Listener
      */

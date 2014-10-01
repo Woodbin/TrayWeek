@@ -15,6 +15,7 @@ public class SettingsWindow {
     private JButton recreateFakeDataButton;
     private JPanel settingsPanel;
     private JButton autoLoginSaveButton;
+    private JButton closeButton;
     JFrame frame;
 
     public void createAndShow() {
@@ -26,17 +27,22 @@ public class SettingsWindow {
     }
 
     public SettingsWindow() {
+        fakeDataCountSpinner.setValue(new Integer(Core.getFakeDataCount()));
+        testModeCheckBox.setSelected(Core.getTestModeState());
+        autoLoginCheckBox.setSelected(Core.getAutoLoginState());
+        testModeSwitch(Core.getTestModeState());
+        autoLoginSwitch(Core.getAutoLoginState());
         testModeCheckBox.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                testModeSwitch();
+                testModeClick();
                 super.mouseClicked(e);
             }
         });
         autoLoginCheckBox.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                autoLoginSwitch();
+                autoLoginClick();
                 super.mouseClicked(e);
             }
         });
@@ -54,45 +60,60 @@ public class SettingsWindow {
                 super.mouseClicked(e);
             }
         });
+        closeButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                closeWindow();
+                super.mouseClicked(e);
+            }
+        });
     }
 
-    private void testModeSwitch(){
-        if(testModeCheckBox.isEnabled()){
-            fakedataCountLabel.setEnabled(true);
-            recreateFakeDataButton.setEnabled(true);
-            fakedataCountLabel.setEnabled(true);
-            Core.setTestModeState(true);
-        }if(!testModeCheckBox.isEnabled()){
-            fakedataCountLabel.setEnabled(false);
-            recreateFakeDataButton.setEnabled(false);
-            fakedataCountLabel.setEnabled(false);
-            Core.setTestModeState(false);
-        }
-    }
 
-    private void autoLoginSwitch(){
-        if(autoLoginCheckBox.isEnabled()){
-            autoLoginTextField.setEnabled(true);
-            autoPasswordField.setEnabled(true);
-            autoLoginSaveButton.setEnabled(true);
-        }
-        if(!autoLoginCheckBox.isEnabled()){
-            autoLoginTextField.setEnabled(false);
-            autoPasswordField.setEnabled(false);
-            autoLoginSaveButton.setEnabled(false);
-            Core.setAutoLoginState(false);
-        }
+
+    private void testModeClick(){
+        if(testModeCheckBox.isSelected()) testModeSwitch(true);
+        else testModeSwitch(false);
+
+        frame.revalidate();
+    }
+    private void testModeSwitch(boolean state){
+            fakedataCountLabel.setEnabled(state);
+            recreateFakeDataButton.setEnabled(state);
+            fakeDataCountSpinner.setEnabled(state);
+            Core.setTestModeState(state);
+
+    }
+    private void autoLoginClick(){
+        if(autoLoginCheckBox.isSelected()) autoLoginSwitch(true);
+        else autoLoginSwitch(false);
+
+        frame.revalidate();
+    }
+    private void autoLoginSwitch(boolean state){
+            autoLoginTextField.setEnabled(state);
+            autoPasswordField.setEnabled(state);
+            autoLoginSaveButton.setEnabled(state);
+            if(!state)Core.setAutoLoginState(state);
     }
 
 
     private void saveAutoLoginCredentials(){
-
+        //TODO Save login credentials for auto login
     }
 
     private void recreateFakeData(){
-
+        try {
+            Core.setFakeDataCount((Integer)fakeDataCountSpinner.getValue());
+            Core.action(CoreAction.RECREATEFAKES);
+            App.rebuildProjectsView();
+        } catch (CoreException e) {
+            e.printStackTrace();
+        }
     }
-
+    private void closeWindow(){
+        frame.dispose();
+    }
 
 
 

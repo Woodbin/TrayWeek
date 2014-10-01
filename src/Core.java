@@ -11,6 +11,9 @@ public class Core {
     private static boolean loggedIn=false;
     private static boolean autoLogin=false;
     private static boolean testMode=true;
+
+    private static int fakeDataCount = 10;
+
     //REFERENCES
     private static App app = App.getInstance();
     private static DebugModule debug = DebugModule.getInstance();
@@ -48,7 +51,7 @@ public class Core {
                 }catch(ProjectDoesntExistException p){
 
                 }
-
+            case RECREATEFAKES: createFakeData(); break;
         }
     }
 
@@ -155,7 +158,8 @@ public class Core {
      */
     private static void createFakeData(){
         debug.debugOut("Creating FakeData");
-        for(int i = 0;i<10;i++){
+        projects.clear();
+        for(int i = 0;i<fakeDataCount;i++){
             try{
                 projects.add(new Project(i+"","fakeProject"+i));
                 debug.debugOut("Created Fake Project: " + projects.get(i).getName());
@@ -165,6 +169,15 @@ public class Core {
                 }
             }
         }
+
+    /**
+     * Sets number of fake projects to be created.
+     * @param count of fake projects
+     */
+    public static void setFakeDataCount(int count){
+        fakeDataCount=count;
+    }
+
 
     /**
      * Find Project with specified projectId and returns it
@@ -209,7 +222,9 @@ public class Core {
     public static void setTestModeState(boolean _b){
         testMode=_b;
     }
-
+    public static int getFakeDataCount(){
+        return fakeDataCount;
+    }
 
     /**
      * Creates new Task with specified projectId and description
