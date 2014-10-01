@@ -20,7 +20,9 @@ public class DebugModule {
             "login [login] [password]     přihlášení na server za použití napsaných údajů\n" +
             "logout                       odhlášení ze serveru\n" +
             "completeTask                 dokončí aktuálně vybraný úkol\n" +
-            "new {project} [id] [name]    vytvoří nový fakeproject";
+            "new project [id] [name]      vytvoří nový fakeproject\n" +
+            "fetch                        vytvoří fakedata/stáhne data ze serveru\n" +
+            "set fakedatacount [count]    nastaví množství fakeprojektů";
 
 
     public static DebugModule getInstance() {
@@ -129,7 +131,20 @@ public class DebugModule {
                     e.printStackTrace();
                 }
             }
+        }if(commands.get(0).toLowerCase().equals("fetch")){
+            try {
+                core.action(CoreAction.FETCH);
+            } catch (CoreException e) {
+                e.printStackTrace();
+            }
+        }if(commands.get(0).toLowerCase().equals("set")){
+            if(commands.get(1).toLowerCase().equals("fakedatacount")){
+                core.setFakeDataCount(Integer.parseInt(commands.get(2)));
+            }
         }
+
+
+
     }
 
 
