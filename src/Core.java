@@ -13,6 +13,8 @@ public class Core {
     private static boolean testMode=true;
 
     private static int fakeDataCount = 10;
+    private static String login;
+    private static String password;
 
     //REFERENCES
     private static App app = App.getInstance();
@@ -28,7 +30,11 @@ public class Core {
      */
     private Core() {
         projects = new ArrayList<Project>();
-        createFakeData();
+        try {
+            action(CoreAction.FETCH);
+        } catch (CoreException e) {
+            e.printStackTrace();
+        }
     }
 
     /** Does magic corresponding to action
@@ -40,7 +46,11 @@ public class Core {
     public static void action(CoreAction ac, String args[]) throws CoreException{
         switch (ac){
             case CLOSE: closeCore(Integer.parseInt(args[0])); break;
-            case LOGIN: login(args); break;
+            case LOGIN:{
+                setLoginCredentials(args[0],args[1]);
+                login();
+                break;
+            }
             case LOGOUT: logout(); break;
             case COMPLETETASK: completeTask(args); break;
             case NEWPROJECT: newProject(args); break;
@@ -52,6 +62,7 @@ public class Core {
 
                 }
             case RECREATEFAKES: createFakeData(); break;
+            case FETCH: fetchData();
         }
     }
 
@@ -86,17 +97,22 @@ public class Core {
 
     /**
      * Login method
-     * @param args
+     *
      */
-    private static void login(String args[]){
+    private static void login(){
         debug.debugOut("Login command called");
-        debug.debugOut("Logging in with login: " + args[0] + "; password: " + args[1]);
-        //TODO Login logic here - MAKE LoginFailedException!!!
+        debug.debugOut("Logging in with login: " + login + "; password: " + password);
+        if((RESTClient.login(login,password))||testMode){
+            try {
+                action(CoreAction.FETCH);
+                loggedIn=true;
+                app.setLoginItemState(false);
+                app.setLogoutItemState(true);
+                app.setTasksItemState(true);
+            }catch(CoreException ce){
+            }
 
-        loggedIn=true;
-        app.setLoginItemState(false);
-        app.setLogoutItemState(true);
-        app.setTasksItemState(true);
+        }
     }
 
     /**
@@ -104,12 +120,24 @@ public class Core {
      */
     private static void logout(){
         debug.debugOut("Logging out");
-        //TODO Logout Logic here
-
         loggedIn=false;
+        projects.clear();
         app.setLoginItemState(true);
         app.setLogoutItemState(false);
         app.setTasksItemState(false);
+
+    }
+
+    private static void fetchData(){
+        debug.debugOut("Called fetch");
+        if(testMode){
+            createFakeData();
+        }else{
+            if(loggedIn){
+                debug.debugOut("Fetching projects");
+                projects = RESTClient.assembleProjects();
+            }
+        }
 
     }
 
@@ -152,7 +180,10 @@ public class Core {
         return loggedIn;
 
     }
-
+    public static void setLoginCredentials(String log, String pass){
+        login=log;
+        password=pass;
+    }
     /**
      * Creates fake projects
      */

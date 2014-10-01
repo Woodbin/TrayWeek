@@ -56,14 +56,21 @@ public class RESTClient {
 
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
-    public static Response login(String[] credentials){
+    public static boolean login(String login, String password){
 
-        String output = "login";
+            boolean success = false;
 
 
 
-        return Response.status(200).entity(output).build();
+            return success;
+    }
 
+    public static ArrayList<Project> assembleProjects(){
+        ArrayList<Project> ret = new ArrayList<Project>();
+
+
+
+        return ret;
 
     }
 }
