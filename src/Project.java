@@ -7,6 +7,7 @@ public class Project {
     private String name;
     private String id;
     private ArrayList<Task> finishedTasks;
+    private ArrayList<Project> parent;
 
 
     /**
@@ -16,14 +17,17 @@ public class Project {
      * @throws ProjectAlreadyExitsException thrown if _id isn't unique
      */
     public Project(String _id, String _name) throws ProjectAlreadyExitsException{
-
-            if(!checkAvailability(_id)) throw new ProjectAlreadyExitsException("Project exists!");
-        else
-            name = _name;
-            id = _id;
-            finishedTasks=new ArrayList<Task>();
+        this(_id,_name,Core.getProjects());
     }
 
+    public Project(String _id, String _name, ArrayList<Project> _parent) throws ProjectAlreadyExitsException{
+        parent = _parent;
+        if(!checkAvailability(_id)) throw new ProjectAlreadyExitsException("Project exists!");
+        else
+            name = _name;
+        id = _id;
+        finishedTasks=new ArrayList<Task>();
+    }
     /**
      * Appends task _t to ArrayList of finished tasks
      * @param _t
@@ -53,10 +57,13 @@ public class Project {
      */
     private boolean checkAvailability(String id){
         boolean available=true;
-        for(int i =0;i<Core.getProjects().size();i++){
-            if(Core.getProjects().get(i).getId().equals(id)) available=false;
-            break;
+        if(!parent.isEmpty()){
+            for(int i =0;i<parent.size();i++){
+                if(parent.get(i).getId().equals(id)) available=false;
+                break;
+            }
         }
+
         return available;
     }
 

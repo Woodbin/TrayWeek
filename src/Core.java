@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * Created by Woodbin on 23.9.2014.
  */
 public class Core {
-    private static ArrayList<Project> projects;
+    private static ArrayList<Project> projects = new ArrayList<Project>();
     private static Task currentTask;
 
 
