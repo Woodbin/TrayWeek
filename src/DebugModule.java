@@ -13,7 +13,7 @@ public class DebugModule {
     /**
      * Help message
      */
-    private static String helpstring = "List of commands \n" +
+    private static String helpstring = "Seznam příkazů \n" +
             "close                        ukončí klienta\n" +
             "help                         zobrazuje tuto zprávu\n" +
             "version                      ukáže číslo verze\n" +

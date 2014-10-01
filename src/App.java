@@ -206,6 +206,7 @@ public class App {
         if(!debug.getConsoleWindowState()){
             debugConsole.create();
             debug.setConsoleWindowState(true);
+            debug.debugIn("help");
         }
         debugConsole.windowShow();
     }
