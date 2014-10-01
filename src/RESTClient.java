@@ -19,8 +19,7 @@ public class RESTClient {
     private RESTClient() {
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
+
     public static Project getProject(String name){
         Project ret = null;
         try {
@@ -34,8 +33,7 @@ public class RESTClient {
         return ret;
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
+
     public static ArrayList<String> getProjectList(){
         ArrayList<String> projects = new ArrayList<String>();
 
@@ -44,22 +42,19 @@ public class RESTClient {
         return projects;
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public static Response commitTask(Task t){
-        String output = t.getDescription();
 
+    public static boolean commitTask(Task t){
+        boolean success = false;
         //TODO REST task commit
 
-        return Response.status(200).entity(output).build();
+        return success;
     }
 
-    @POST
-    @Consumes(MediaType.TEXT_PLAIN)
+
     public static boolean login(String login, String password){
 
             boolean success = false;
-
+        //TODO REST Login logic
 
 
             return success;
@@ -68,7 +63,7 @@ public class RESTClient {
     public static ArrayList<Project> assembleProjects(){
         ArrayList<Project> ret = new ArrayList<Project>();
 
-
+        //TODO assemble projects
 
         return ret;
 
