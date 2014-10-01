@@ -1,9 +1,16 @@
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.JerseyClient;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import java.net.URI;
 import java.util.ArrayList;
 
 /**
@@ -11,14 +18,29 @@ import java.util.ArrayList;
  */
 public class RESTClient {
     private static RESTClient ourInstance = new RESTClient();
+    private static ClientConfig config;
+    private static Client client;
+    private static WebTarget target;
+    private static String url;
+
+
 
     public static RESTClient getInstance() {
         return ourInstance;
     }
 
+
+
+
     private RESTClient() {
+        config = new ClientConfig();
+        client = ClientBuilder.newClient();
+        target = client.target(getURI());
     }
 
+    private static URI getURI(){
+        return UriBuilder.fromUri(url).build();
+    }
 
     public static Project getProject(String name){
         Project ret = null;
