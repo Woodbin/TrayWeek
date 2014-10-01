@@ -89,7 +89,21 @@ public class Core {
      * @param errorcode
      */
     private static void closeCore(int errorcode){
-        debug.debugOut("Closing core with errorcode: " + errorcode + " ~ " + debug.getErrorMessage(errorcode));
+        if(currentTask!=null){
+            if(currentTask.getDescription().equals("")){
+                debug.debugOut("Finish Task first!");
+                App.createFinishingWindow();
+                return;
+            }else{
+                try {
+                    debug.debugOut("Closing core with errorcode: " + errorcode + " ~ " + debug.getErrorMessage(errorcode));
+                    action(CoreAction.COMPLETETASK);
+                } catch (CoreException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
         System.exit(errorcode);
 
 
@@ -152,7 +166,10 @@ public class Core {
             currentTask.setDescription(args[0]);
             debug.debugOut("Finishing task for project " + getProjectById(currentTask.getProjectId()).getName() + " with description: \n" + currentTask.getDescription() + "\n and timestamp " + currentTask.getFinishTimestamp().toString());
             getProjectById(currentTask.getProjectId()).appendTask(currentTask);
+            if(!testMode){
+                if(RESTClient.commitTask(currentTask));
 
+            }
 
         }catch (ProjectDoesNotExistException p){
             debug.debugOut("Project with id "+currentTask.getProjectId()+" doesn't exist!");

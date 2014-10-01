@@ -141,11 +141,11 @@ public class App {
                     }
                 }
                 if(e.getActionCommand()=="Dokonči úkol"){
-                    DescriptionWindow dw = new DescriptionWindow(projectsWindow.getCurrentTask().getProjectId(),true,projectsWindow);
-                    dw.createAndShow();
+                    createFinishingWindow();
                     try {
                         core.action(CoreAction.COMPLETETASK);
                         setTaskFinishItemState(false);
+                        showProjectsWindow();
                     } catch (CoreException e1) {
                         e1.printStackTrace();
                     }
@@ -211,6 +211,10 @@ public class App {
         debugConsole.windowShow();
     }
 
+    public static void createFinishingWindow(){
+        DescriptionWindow dw = new DescriptionWindow(projectsWindow.getCurrentTask().getProjectId(),true,projectsWindow);
+        dw.createAndShow();
+    }
     /**
      * Shows login window
      */
