@@ -97,7 +97,7 @@ public class DescriptionWindow {
             projectsWindow.windowHide();
             frame.dispose();
 
-            }catch(ProjectDoesntExistException e){
+            }catch(ProjectDoesNotExistException e){
                 debug.debugOut("Task can't be added to nonexisting project!");
             }catch(CoreException c){
 
@@ -111,7 +111,7 @@ public class DescriptionWindow {
                 core.action(CoreAction.COMPLETETASK,args);
                 projectsWindow.changeButtons(ProjectsWindowButtonStateChange.COMPLETETASK);
                 frame.dispose();
-            }catch (ProjectDoesntExistException e){
+            }catch (ProjectDoesNotExistException e){
                 debug.debugOut("Task can't be added to nonexisting project!");
             }catch(CoreException c){
 

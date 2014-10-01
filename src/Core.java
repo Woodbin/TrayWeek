@@ -58,7 +58,7 @@ public class Core {
                 try{
                     newTask(args[0],args[1]);
                     break;
-                }catch(ProjectDoesntExistException p){
+                }catch(ProjectDoesNotExistException p){
 
                 }
             case RECREATEFAKES: createFakeData(); break;
@@ -154,7 +154,8 @@ public class Core {
             getProjectById(currentTask.getProjectId()).appendTask(currentTask);
 
 
-        }catch (ProjectDoesntExistException p){
+        }catch (ProjectDoesNotExistException p){
+            debug.debugOut("Project with id "+currentTask.getProjectId()+" doesn't exist!");
 
         }
     }
@@ -214,9 +215,9 @@ public class Core {
      * Find Project with specified projectId and returns it
      * @param id
      * @return Project
-     * @throws ProjectDoesntExistException  throws in case the project with specified id doesn't exist
+     * @throws ProjectDoesNotExistException  throws in case the project with specified id doesn't exist
      */
-    public static Project getProjectById(String id) throws ProjectDoesntExistException{
+    public static Project getProjectById(String id) throws ProjectDoesNotExistException {
         int temp=-1;
         for(int i = 0; i<projects.size();i++){
             if(id.equals(projects.get(i).getId()))
@@ -224,7 +225,7 @@ public class Core {
             debug.debugOut("Found project with id: "+projects.get(i).getId());
             }
         }
-        if(temp==-1 ) throw new ProjectDoesntExistException("Project doesn't exist!");
+        if(temp==-1 ) throw new ProjectDoesNotExistException("Project doesn't exist!");
         return projects.get(temp);
 
     }
@@ -261,12 +262,12 @@ public class Core {
      * Creates new Task with specified projectId and description
      * @param projectId
      * @param description
-     * @throws ProjectDoesntExistException throws if the specified project doesn't exist
+     * @throws ProjectDoesNotExistException throws if the specified project doesn't exist
      */
-    private static void newTask(String projectId, String description) throws ProjectDoesntExistException{
+    private static void newTask(String projectId, String description) throws ProjectDoesNotExistException {
         try {
             currentTask = new Task(projectId, description);
-        }catch(ProjectDoesntExistException p) {
+        }catch(ProjectDoesNotExistException p) {
         throw p;
         }
     }

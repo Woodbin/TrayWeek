@@ -14,9 +14,9 @@ public class Task {
      * Task constructor
      * @param _projectId project must already exist!
      * @param _description Can be empty
-     * @throws ProjectDoesntExistException
+     * @throws ProjectDoesNotExistException
      */
-    public Task( String _projectId, String _description) throws ProjectDoesntExistException{
+    public Task( String _projectId, String _description) throws ProjectDoesNotExistException {
         if(Core.checkProjectId(_projectId)){
             projectId=_projectId;
             description=_description;

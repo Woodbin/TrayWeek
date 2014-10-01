@@ -130,7 +130,7 @@ public class ProjectsWindow {
 
             try {
                 currentProjectId=core.getProjectById(id.get(0)).getId();
-            } catch (ProjectDoesntExistException e) {
+            } catch (ProjectDoesNotExistException e) {
                 e.printStackTrace();
             }
             DescriptionWindow descriptionWindow = new DescriptionWindow(currentProjectId, false, this);
