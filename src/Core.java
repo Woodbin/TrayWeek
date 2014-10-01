@@ -9,7 +9,8 @@ public class Core {
 
 
     private static boolean loggedIn=false;
-
+    private static boolean autoLogin=false;
+    private static boolean testMode=true;
     //REFERENCES
     private static App app = App.getInstance();
     private static DebugModule debug = DebugModule.getInstance();
@@ -195,6 +196,20 @@ public class Core {
     public static void setCurrentTask(Task _t){
         currentTask = _t;
     }
+
+    public static boolean getAutoLoginState(){
+        return autoLogin;
+    }
+    public static void setAutoLoginState(boolean _b){
+        autoLogin=_b;
+    }
+    public static boolean getTestModeState(){
+        return testMode;
+    }
+    public static void setTestModeState(boolean _b){
+        testMode=_b;
+    }
+
 
     /**
      * Creates new Task with specified projectId and description
