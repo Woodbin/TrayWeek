@@ -6,9 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8624c596-3173-482f-8e87-0e76873d5ed0" name="Default" comment="Tray Icon work, got leftclick on trayicon working">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RESTClient.java" afterPath="$PROJECT_DIR$/src/RESTClient.java" />
-    </list>
+    <list default="true" id="8624c596-3173-482f-8e87-0e76873d5ed0" name="Default" comment="Tray Icon work, got leftclick on trayicon working" />
     <ignored path="TrayWeek.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -123,7 +121,7 @@
       <file leaf-file-name="RESTClient.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/RESTClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.90338165" vertical-offset="102" max-vertical-offset="1275">
+            <state vertical-scroll-proportion="1.0676328" vertical-offset="0" max-vertical-offset="1275">
               <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -496,7 +494,7 @@
       <workItem from="1411680472844" duration="3474000" />
       <workItem from="1411729759857" duration="553000" />
       <workItem from="1412109530375" duration="7588000" />
-      <workItem from="1412190047752" duration="12709000" />
+      <workItem from="1412190047752" duration="12816000" />
     </task>
     <task id="LOCAL-00001" summary="Tray Icon work, basic Core Action processing">
       <created>1411507322104</created>
@@ -510,7 +508,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64825000" />
+    <option name="totallyTimeSpent" value="64932000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1053,7 +1051,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/RESTClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.90338165" vertical-offset="102" max-vertical-offset="1275">
+        <state vertical-scroll-proportion="1.0676328" vertical-offset="0" max-vertical-offset="1275">
           <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
