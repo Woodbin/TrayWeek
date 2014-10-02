@@ -116,6 +116,16 @@ public class Core {
     private static void login(){
         debug.debugOut("Login command called");
         debug.debugOut("Logging in with login: " + login + "; password: " + password);
+        if(testMode){
+            try {
+                action(CoreAction.FETCH);
+                loggedIn=true;
+                app.setLoginItemState(false);
+                app.setLogoutItemState(true);
+                app.setTasksItemState(true);
+            }catch(CoreException ce){
+            }
+        }/*
         if((RESTClient.login(login,password))||testMode){
             try {
                 action(CoreAction.FETCH);
@@ -126,7 +136,7 @@ public class Core {
             }catch(CoreException ce){
             }
 
-        }
+        }*/
     }
 
     /**

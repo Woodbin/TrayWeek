@@ -46,7 +46,7 @@ public class RESTClient {
     public static Project getProject(String name){
         Project ret = null;
         WebTarget resource = target.path(name);
-        
+
 
         try {
             ret = new Project("","");
