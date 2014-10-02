@@ -4,11 +4,13 @@
       <root url="file://$PROJECT_DIR$/jaxrs-ri" />
       <root url="file://$PROJECT_DIR$/jaxrs-ri/api" />
       <root url="file://$PROJECT_DIR$/jaxrs-ri/lib" />
+      <root url="file://$PROJECT_DIR$/jaxrs-ri/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
     <jarDirectory url="file://$PROJECT_DIR$/jaxrs-ri" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/jaxrs-ri/api" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/jaxrs-ri/lib" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/jaxrs-ri/lib" recursive="false" />
   </library>
 </component>

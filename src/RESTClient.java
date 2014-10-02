@@ -8,6 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
@@ -34,7 +35,7 @@ public class RESTClient {
 
     private RESTClient() {
         config = new ClientConfig();
-        client = ClientBuilder.newClient();
+        client = ClientBuilder.newClient(config);
         target = client.target(getURI());
     }
 
@@ -44,6 +45,9 @@ public class RESTClient {
 
     public static Project getProject(String name){
         Project ret = null;
+        WebTarget resource = target.path(name);
+        
+
         try {
             ret = new Project("","");
         } catch (ProjectAlreadyExitsException e) {
